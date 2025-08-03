@@ -212,7 +212,7 @@
       padding: tokens.spacing(lg);
       box-sizing: border-box;
       gap: tokens.spacing(sm);
-      border-top: 1px solid black;
+      border-top: 1px solid var(--mat-sys-outline);
 
       &.open {
         left: 0;
