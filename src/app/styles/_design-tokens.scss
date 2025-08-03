@@ -1,3 +1,5 @@
+@use "sass:map";
+
 $spacing: (
   xs: 4px,
   sm: 8px,
@@ -35,21 +37,21 @@ $nav-dimensions: (
 );
 
 @function spacing($size) {
-  @return map-get($spacing, $size);
+  @return map.get($spacing, $size);
 }
 
 @function border-radius($size) {
-  @return map-get($border-radius, $size);
+  @return map.get($border-radius, $size);
 }
 
 @function icon-size($size) {
-  @return map-get($icon-sizes, $size);
+  @return map.get($icon-sizes, $size);
 }
 
 @function logo-size($context) {
-  @return map-get($logo-sizes, $context);
+  @return map.get($logo-sizes, $context);
 }
 
 @function nav-dimension($key) {
-  @return map-get($nav-dimensions, $key);
+  @return map.get($nav-dimensions, $key);
 }
