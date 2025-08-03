@@ -1,0 +1,57 @@
+@use "sass:map";
+
+$spacing: (
+  xs: 4px,
+  sm: 8px,
+  md: 12px,
+  lg: 16px,
+  xl: 20px,
+  xxl: 24px,
+  xxxl: 32px,
+);
+
+$border-radius: (
+  sm: 4px,
+  md: 8px,
+  lg: 12px,
+  xl: 16px,
+);
+
+$icon-sizes: (
+  sm: 20px,
+  md: 24px,
+  lg: 32px,
+  xl: 48px,
+);
+
+$logo-sizes: (
+  mobile: 50px,
+  desktop: 60px,
+);
+
+$nav-dimensions: (
+  desktop-width: 140px,
+  mobile-height: 70px,
+  side-menu-width: 220px,
+  mobile-nav-item-width: 60px,
+);
+
+@function spacing($size) {
+  @return map.get($spacing, $size);
+}
+
+@function border-radius($size) {
+  @return map.get($border-radius, $size);
+}
+
+@function icon-size($size) {
+  @return map.get($icon-sizes, $size);
+}
+
+@function logo-size($context) {
+  @return map.get($logo-sizes, $context);
+}
+
+@function nav-dimension($key) {
+  @return map.get($nav-dimensions, $key);
+}

@@ -10,9 +10,9 @@ html {
       ),
       typography: Inter,
       density: 0,
-      contrast: medium,
     )
   );
+  @include my_theme.light-theme-overrides();
 }
 
 body {
