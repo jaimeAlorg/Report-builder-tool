@@ -1,0 +1,29 @@
+@use "../../styles/design-tokens" as tokens;
+
+.report-viewer-container {
+  flex: 1;
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+}
+
+.report-list-container {
+  display: flex;
+  flex-direction: column;
+  outline: auto;
+  width: 40%;
+  padding: tokens.spacing(xxl);
+
+  app-report-list-card {
+    flex: 1;
+  }
+}
+
+.report-view-container {
+  display: flex;
+  flex-direction: column;
+  outline: auto;
+  width: 60%;
+  padding: tokens.spacing(xxl);
+  background-color: var(--mat-sys-surface-container-lowest);
+}
