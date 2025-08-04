@@ -1,0 +1,104 @@
+@use "../../styles/design-tokens" as tokens;
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  padding: tokens.spacing(s) tokens.spacing(lg);
+  gap: tokens.spacing(s);
+  border-radius: tokens.border-radius(xl);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--mat-sys-surface-container-high);
+  box-sizing: border-box;
+  height: 100%;
+  gap: tokens.spacing(lg);
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 0 tokens.spacing(s);
+  gap: tokens.spacing(s);
+
+  h2 {
+    font: var(--mat-sys-headline-medium);
+    font-weight: normal;
+    color: var(--mat-sys-primary);
+    margin: 0;
+  }
+
+  .filter-button {
+    border-color: var(--mat-sys-primary);
+  }
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  padding: tokens.spacing(s) 0;
+  width: 100%;
+  gap: tokens.spacing(xs);
+
+  .card-report-container {
+    display: flex;
+    flex-direction: column;
+    gap: tokens.spacing(xs);
+
+    .card-report {
+      display: flex;
+      padding: tokens.spacing(md) tokens.spacing(sm);
+      border-radius: tokens.border-radius(md);
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--mat-sys-surface-container);
+        padding-bottom: -8px;
+      }
+
+      .card-bullet-container {
+        display: flex;
+        align-items: center;
+        margin-right: tokens.spacing(lg);
+
+        .card-bullet {
+          width: tokens.icon-size(md);
+          height: tokens.icon-size(md);
+          border: 1px solid var(--mat-sys-primary);
+          border-radius: 50%;
+          background-color: transparent;
+          transition: background-color 0.2s ease;
+
+          &.selected {
+            background-color: var(--mat-sys-primary);
+          }
+        }
+      }
+
+      .card-information {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: tokens.spacing(xs);
+
+        .information-top {
+          .report-title {
+            font: var(--mat-sys-body-large);
+            font-weight: 500;
+            color: var(--mat-sys-on-surface);
+            margin: 0;
+            line-height: 1.2;
+          }
+        }
+
+        .information-bottom {
+          .report-meta {
+            font: var(--mat-sys-body-small);
+            color: var(--mat-sys-on-surface-variant);
+            margin: 0;
+            line-height: 1.2;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,10 @@
+@use "./styles/design-tokens" as tokens;
+
 .app-container {
   display: flex;
   flex-direction: row;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -10,10 +12,5 @@
 
   .app-body {
     flex: 1;
-    overflow: auto;
-
-    @media (max-width: 768px) {
-      margin-top: 70px;
-    }
   }
 }
