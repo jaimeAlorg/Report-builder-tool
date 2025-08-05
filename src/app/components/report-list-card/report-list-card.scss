@@ -4,13 +4,13 @@
   display: flex;
   flex-direction: column;
   padding: tokens.spacing(s) tokens.spacing(lg);
-  gap: tokens.spacing(s);
+  gap: tokens.spacing(lg);
   border-radius: tokens.border-radius(xl);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: var(--mat-sys-surface-container-high);
   box-sizing: border-box;
   height: 100%;
-  gap: tokens.spacing(lg);
+  overflow: hidden;
 }
 
 .card-header {
@@ -38,11 +38,34 @@
   padding: tokens.spacing(s) 0;
   width: 100%;
   gap: tokens.spacing(xs);
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--mat-sys-surface-container-high);
+    border-radius: 4px;
+    margin: tokens.spacing(xs) 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--mat-sys-outline-variant);
+    border-radius: 4px;
+
+    &:hover {
+      background: var(--mat-sys-outline);
+    }
+  }
 
   .card-report-container {
     display: flex;
     flex-direction: column;
     gap: tokens.spacing(xs);
+    padding-right: tokens.spacing(lg);
 
     .card-report {
       display: flex;
@@ -52,7 +75,7 @@
 
       &:hover {
         background-color: var(--mat-sys-surface-container);
-        padding-bottom: -8px;
+        transform: translateY(-1px);
       }
 
       .card-bullet-container {

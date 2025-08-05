@@ -12,10 +12,14 @@
   flex-direction: column;
   outline: auto;
   width: 40%;
+  height: 100vh;
   padding: tokens.spacing(xxl);
+  box-sizing: border-box;
 
   app-report-list-card {
     flex: 1;
+    overflow-y: auto;
+    min-height: 0;
   }
 }
 
@@ -128,6 +132,8 @@
     flex-direction: column;
     gap: tokens.spacing(md);
     flex: 1;
+    min-height: 0;
+    overflow: hidden;
 
     .table-subtitle {
       font: var(--mat-sys-title-medium);
@@ -136,9 +142,10 @@
       font-weight: 500;
     }
 
-    .table-container {
+    app-table {
       flex: 1;
-      overflow: auto;
+      min-height: 0;
+      overflow: hidden;
     }
   }
 }
