@@ -1,3 +1,10 @@
 {
-  "conventionalCommits.scopes": ["Root", "nav-bar", "reports", "routing"]
+  "conventionalCommits.scopes": [
+    "Root",
+    "nav-bar",
+    "reports",
+    "routing",
+    "table",
+    "report-viewer"
+  ]
 }
