@@ -1,21 +1,47 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
+import { ReportService } from '../../services/report-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-table',
-  imports: [MatTableModule],
+  imports: [MatTableModule, CommonModule],
   templateUrl: './table.html',
   styleUrl: './table.scss'
 })
-export class Table {
-  @Input() selectedColumns: any[] = [];
+export class Table implements OnInit, OnChanges {
+  @Input() selectedColumns: string[] = [];
+  dataSource: any[] = [];
+  displayedColumns: string[] = [];
 
-  displayedColumns: string[] = ['position', 'name', 'category', 'revenue'];
+  constructor(private reportService: ReportService) { }
 
-  dataSource = [
-    { position: 1, name: 'Product A', category: 'Electronics', revenue: 1000 },
-    { position: 2, name: 'Product B', category: 'Electronics', revenue: 2000 },
-    { position: 3, name: 'Product C', category: 'Electronics', revenue: 1500 },
-  ];
+  ngOnInit() {
+    this.getTableData();
+  }
 
+  ngOnChanges(simpleChanges: any): void {
+    if (simpleChanges['selectedColumns']) {
+      this.updateDisplayedColumns();
+      this.getTableData();
+
+    }
+  }
+
+  private updateDisplayedColumns(): void {
+    if (this.selectedColumns && this.selectedColumns.length > 0) {
+      this.displayedColumns = [...this.selectedColumns];
+    }
+  }
+
+  getTableData(): void {
+    this.reportService.getReportTableData(this.displayedColumns).subscribe({
+      next: (data) => {
+        this.dataSource = data;
+      },
+      error: (error) => {
+        console.error('Error updating table data:', error);
+      }
+    });
+  }
 }
