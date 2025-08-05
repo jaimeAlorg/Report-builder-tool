@@ -3,6 +3,49 @@
     <app-report-list-card></app-report-list-card>
   </div>
   <div class="report-view-container">
-    <h1>HELLO WORLD</h1>
+    <div class="report-view-header">
+      <div class="title-container">
+        <h1 class="report-title">Q1 Financial Report 2025</h1>
+        <button mat-button matButton="filled" class="export-button">
+          <mat-icon>file_download</mat-icon>
+          Export
+        </button>
+      </div>
+      <div class="author-container">
+        <p class="info-label">Created by:</p>
+        <p class="info-value">Jaime Arturo Álvarez Orgaz</p>
+      </div>
+      <div class="date-container">
+        <p class="info-label">Creation date:</p>
+        <p class="info-value">04/08/2025</p>
+      </div>
+      <div class="time-container">
+        <p class="info-label">Creation time:</p>
+        <p class="info-value">14:30</p>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="report-view-filters">
+      <h3 class="filters-subtitle">Filters Applied</h3>
+      <div class="filters-list">
+        <div class="filter-item">
+          <p class="filter-label">Category:</p>
+          <p class="filter-value">Electronics</p>
+        </div>
+        <div class="filter-item">
+          <p class="filter-label">Region:</p>
+          <p class="filter-value">Asia</p>
+        </div>
+        <div class="filter-item">
+          <p class="filter-label">Filters selected:</p>
+          <p class="filter-value">Name, category, revenue</p>
+        </div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="report-view-table">
+      <h3 class="table-subtitle">Table</h3>
+      <app-table></app-table>
+    </div>
   </div>
 </div>

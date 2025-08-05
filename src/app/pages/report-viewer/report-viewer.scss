@@ -26,4 +26,119 @@
   width: 60%;
   padding: tokens.spacing(xxl);
   background-color: var(--mat-sys-surface-container-lowest);
+  gap: tokens.spacing(lg);
+
+  .report-view-header {
+    display: flex;
+    flex-direction: column;
+    gap: tokens.spacing(md);
+
+    .title-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .report-title {
+        font: var(--mat-sys-headline-medium);
+        color: var(--mat-sys-on-primary-container);
+        margin: 0;
+        font-weight: 500;
+      }
+
+      .export-button {
+        background-color: var(--mat-sys-tertiary);
+        color: var(--mat-sys-on-tertiary);
+        border-radius: 8px !important;
+        width: 100px;
+      }
+    }
+
+    .author-container,
+    .date-container,
+    .time-container {
+      display: flex;
+      align-items: center;
+
+      .info-label {
+        font: var(--mat-sys-body-medium);
+        color: var(--mat-sys-surface-tint);
+        margin: 0;
+        margin-right: tokens.spacing(xs);
+        font-weight: 500;
+      }
+
+      .info-value {
+        font: var(--mat-sys-body-medium);
+        color: var(--mat-sys-surface-tint);
+        margin: 0;
+      }
+    }
+  }
+
+  .report-view-filters {
+    display: flex;
+    flex-direction: column;
+    gap: tokens.spacing(md);
+
+    .filters-subtitle {
+      font: var(--mat-sys-title-medium);
+      color: var(--mat-sys-on-surface);
+      margin: 0;
+    }
+
+    .filters-list {
+      display: flex;
+      flex-direction: column;
+      gap: tokens.spacing(sm);
+      padding-left: tokens.spacing(lg);
+
+      .filter-item {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        &::before {
+          content: "•";
+          color: var(--mat-sys-primary);
+          font-weight: bold;
+          position: absolute;
+          left: -#{tokens.spacing(md)};
+        }
+
+        .filter-label {
+          font: var(--mat-sys-body-medium);
+          color: var(--mat-sys-on-surface-variant);
+          margin: 0;
+          margin-right: tokens.spacing(xs);
+          font-weight: 500;
+        }
+
+        .filter-value {
+          font: var(--mat-sys-body-medium);
+          color: var(--mat-sys-on-surface);
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .report-view-table {
+    display: flex;
+    flex-direction: column;
+    gap: tokens.spacing(md);
+    flex: 1;
+
+    .table-subtitle {
+      font: var(--mat-sys-title-medium);
+      color: var(--mat-sys-on-surface);
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .table-container {
+      flex: 1;
+      overflow: auto;
+    }
+  }
 }
