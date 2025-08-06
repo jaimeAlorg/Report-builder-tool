@@ -1,0 +1,39 @@
+@use "../../styles/design-tokens" as tokens;
+
+.table-container {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--mat-sys-secondary);
+    border-radius: 4px;
+    overflow-y: none;
+
+    &:hover {
+      background: var(--mat-sys-outline);
+    }
+  }
+}
+
+.mat-table {
+  background-color: var(--mat-sys-surface-container-lowest);
+  width: 100%;
+  min-width: 600px;
+
+  .table-header {
+    color: var(--mat-sys-on-primary-container);
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .mat-cell {
+    white-space: nowrap;
+  }
+}

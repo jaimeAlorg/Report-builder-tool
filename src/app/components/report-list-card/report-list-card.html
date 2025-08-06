@@ -1,0 +1,33 @@
+<div class="card-container">
+  <div class="card-header">
+    <h2>Report List</h2>
+    <button matButton="outlined" class="filter-button">
+      <mat-icon>filter_alt</mat-icon>
+      Filter
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="card-report-container" *ngFor="let report of reportList">
+      <div class="card-report" (click)="onReportClick(report)">
+        <div class="card-bullet-container">
+          <div
+            class="card-bullet"
+            [class.selected]="report.selected && !isMobileView"
+          ></div>
+        </div>
+        <div class="card-information">
+          <div class="information-top">
+            <p class="report-title">{{ report.title }}</p>
+          </div>
+          <div class="information-bottom">
+            <p class="report-meta">
+              {{ report.creationDate }}
+              {{ report.creationTime }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "product": "Laptop",
+    "category": "Electronics",
+    "region": "South America",
+    "sales": 1948,
+    "date": "2025-07-14"
+  },
+  {
+    "id": 2,
+    "product": "Coffee Maker",
+    "category": "Appliances",
+    "region": "Europe",
+    "sales": 4189,
+    "date": "2025-07-08"
+  },
+  {
+    "id": 3,
+    "product": "Notebook",
+    "category": "Stationery",
+    "region": "South America",
+    "sales": 1093,
+    "date": "2025-07-13"
+  },
+  {
+    "id": 4,
+    "product": "Desk Chair",
+    "category": "Furniture",
+    "region": "South America",
+    "sales": 3851,
+    "date": "2025-07-04"
+  },
+  {
+    "id": 5,
+    "product": "Laptop",
+    "category": "Electronics",
+    "region": "North America",
+    "sales": 673,
+    "date": "2025-07-12"
+  },
+  {
+    "id": 6,
+    "product": "Laptop",
+    "category": "Electronics",
+    "region": "Africa",
+    "sales": 1823,
+    "date": "2025-07-28"
+  },
+  {
+    "id": 7,
+    "product": "Smartphone",
+    "category": "Electronics",
+    "region": "Asia",
+    "sales": 1244,
+    "date": "2025-07-25"
+  },
+  {
+    "id": 8,
+    "product": "Desk Lamp",
+    "category": "Furniture",
+    "region": "South America",
+    "sales": 3316,
+    "date": "2025-07-06"
+  },
+  {
+    "id": 9,
+    "product": "Notebook",
+    "category": "Stationery",
+    "region": "Africa",
+    "sales": 4747,
+    "date": "2025-07-07"
+  },
+  {
+    "id": 10,
+    "product": "Laptop",
+    "category": "Electronics",
+    "region": "Europe",
+    "sales": 4223,
+    "date": "2025-07-18"
+  },
+  {
+    "id": 11,
+    "product": "Headphones",
+    "category": "Electronics",
+    "region": "Australia",
+    "sales": 4133,
+    "date": "2025-07-13"
+  },
+  {
+    "id": 12,
+    "product": "Desk Lamp",
+    "category": "Furniture",
+    "region": "North America",
+    "sales": 2625,
+    "date": "2025-07-04"
+  },
+  {
+    "id": 13,
+    "product": "Coffee Maker",
+    "category": "Appliances",
+    "region": "Europe",
+    "sales": 3658,
+    "date": "2025-07-14"
+  },
+  {
+    "id": 14,
+    "product": "Coffee Maker",
+    "category": "Appliances",
+    "region": "South America",
+    "sales": 3783,
+    "date": "2025-07-30"
+  },
+  {
+    "id": 15,
+    "product": "Desk Chair",
+    "category": "Furniture",
+    "region": "South America",
+    "sales": 3499,
+    "date": "2025-07-11"
+  },
+  {
+    "id": 16,
+    "product": "Headphones",
+    "category": "Electronics",
+    "region": "Africa",
+    "sales": 4566,
+    "date": "2025-07-13"
+  },
+  {
+    "id": 17,
+    "product": "Monitor",
+    "category": "Electronics",
+    "region": "Australia",
+    "sales": 691,
+    "date": "2025-07-01"
+  },
+  {
+    "id": 18,
+    "product": "Desk Chair",
+    "category": "Furniture",
+    "region": "Australia",
+    "sales": 936,
+    "date": "2025-07-03"
+  },
+  {
+    "id": 19,
+    "product": "Notebook",
+    "category": "Stationery",
+    "region": "Africa",
+    "sales": 2264,
+    "date": "2025-07-19"
+  },
+  {
+    "id": 20,
+    "product": "Notebook",
+    "category": "Stationery",
+    "region": "North America",
+    "sales": 4476,
+    "date": "2025-07-29"
+  }
+]

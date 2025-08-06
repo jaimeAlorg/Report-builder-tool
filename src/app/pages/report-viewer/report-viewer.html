@@ -1,0 +1,87 @@
+<div class="report-viewer-container">
+  <div
+    class="report-list-container"
+    [class.hidden-mobile]="isMobile && selectedReportId"
+  >
+    <app-report-list-card
+      [isMobileView]="isMobile"
+      (reportSelected)="onReportSelected($event)"
+    ></app-report-list-card>
+  </div>
+  <div class="no-report-selected-container" *ngIf="!isMobile && !reportData">
+    <div class="no-report-content">
+      <mat-icon>description</mat-icon>
+      <h3>No report selected</h3>
+      <p>Please select a report from the list to view its details</p>
+    </div>
+  </div>
+  <div
+    class="report-view-container"
+    [class.show-mobile]="isMobile"
+    *ngIf="selectedReportId"
+  >
+    <div class="mobile-actions-container" *ngIf="isMobile && selectedReportId">
+      <button
+        matButton="outlined"
+        class="filter-button"
+        (click)="goBackToReportList()"
+      >
+        <mat-icon>arrow_back</mat-icon>
+        Back to reports
+      </button>
+      <button mat-button matButton="filled" class="export-button">
+        <mat-icon>file_download</mat-icon>
+        Export
+      </button>
+    </div>
+    <div class="report-view-header">
+      <div class="title-container">
+        <h1 class="report-title">{{ reportData?.title }}</h1>
+        <button
+          mat-button
+          matButton="filled"
+          class="export-button"
+          *ngIf="!isMobile"
+        >
+          <mat-icon>file_download</mat-icon>
+          Export
+        </button>
+      </div>
+      <div class="author-container">
+        <p class="info-label">Created by:</p>
+        <p class="info-value">{{ reportData?.author }}</p>
+      </div>
+      <div class="date-container">
+        <p class="info-label">Creation date:</p>
+        <p class="info-value">{{ reportData?.creationDate }}</p>
+      </div>
+      <div class="time-container">
+        <p class="info-label">Creation time:</p>
+        <p class="info-value">{{ reportData?.creationTime }}</p>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="report-view-filters" *ngIf="reportData">
+      <h3 class="filters-subtitle">Filters applied</h3>
+      <div class="filters-list">
+        <div class="filter-item" *ngFor="let filter of activeFilters">
+          <p class="filter-label">{{ filter.label }}:</p>
+          <p class="filter-value">{{ filter.value }}</p>
+        </div>
+        <div class="filter-item" *ngIf="reportData?.filterSelection?.length">
+          <p class="filter-label">Filters selected:</p>
+          <p class="filter-value">
+            {{ reportData!.filterSelection!.join(", ") }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="report-view-table">
+      <h3 class="table-subtitle">Table</h3>
+      <app-table
+        [selectedColumns]="reportData?.filterSelection || []"
+      ></app-table>
+    </div>
+  </div>
+</div>

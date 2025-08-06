@@ -1,0 +1,274 @@
+[
+  {
+    "id": 1,
+    "title": "Sales Report 1",
+    "author": "Author 5",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "product": "Smartphone",
+    "category": "Stationery",
+    "region": "Australia",
+    "dateRange": {
+      "start": "2025-07-22",
+      "end": "2025-07-04"
+    },
+    "filterSelection": ["date", "category", "product"]
+  },
+  {
+    "id": 2,
+    "title": "Sales Report 2",
+    "author": "Author 2",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "category": "Stationery",
+    "region": "Australia",
+    "dateRange": {
+      "start": "2025-07-23",
+      "end": "2025-07-27"
+    },
+    "filterSelection": ["region", "sales"]
+  },
+  {
+    "id": 3,
+    "title": "Sales Report 3",
+    "author": "Author 4",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "product": "Desk Chair",
+    "region": "Europe",
+    "filterSelection": ["product", "category"]
+  },
+  {
+    "id": 4,
+    "title": "Sales Report 4",
+    "author": "Author 3",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "category": "Furniture",
+    "salesRange": {
+      "min": 2030,
+      "max": 3369
+    },
+    "dateRange": {
+      "start": "2025-07-16",
+      "end": "2025-07-09"
+    },
+    "filterSelection": ["region", "category", "sales", "date", "product"]
+  },
+  {
+    "id": 5,
+    "title": "Sales Report 5",
+    "author": "Author 2",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "product": "Coffee Maker",
+    "filterSelection": ["date", "product", "region"]
+  },
+  {
+    "id": 6,
+    "title": "Sales Report 6",
+    "author": "Author 1",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "region": "Africa",
+    "salesRange": {
+      "min": 1833,
+      "max": 3130
+    },
+    "dateRange": {
+      "start": "2025-07-01",
+      "end": "2025-07-13"
+    },
+    "filterSelection": ["region", "sales", "date", "category"]
+  },
+  {
+    "id": 7,
+    "title": "Sales Report 7",
+    "author": "Author 5",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "product": "Desk Chair",
+    "category": "Furniture",
+    "salesRange": {
+      "min": 2102,
+      "max": 4819
+    },
+    "filterSelection": ["sales", "category", "date", "product", "region"]
+  },
+  {
+    "id": 8,
+    "title": "Sales Report 8",
+    "author": "Author 4",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "region": "Africa",
+    "salesRange": {
+      "min": 2123,
+      "max": 4934
+    },
+    "dateRange": {
+      "start": "2025-07-12",
+      "end": "2025-07-24"
+    },
+    "filterSelection": ["region", "date"]
+  },
+  {
+    "id": 9,
+    "title": "Sales Report 9",
+    "author": "Author 4",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "dateRange": {
+      "start": "2025-07-27",
+      "end": "2025-07-27"
+    },
+    "filterSelection": ["category", "date", "product", "sales"]
+  },
+  {
+    "id": 10,
+    "title": "Sales Report 10",
+    "author": "Author 5",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "region": "Asia",
+    "dateRange": {
+      "start": "2025-07-21",
+      "end": "2025-07-20"
+    },
+    "filterSelection": ["sales", "date", "region", "product", "category"]
+  },
+  {
+    "id": 11,
+    "title": "Sales Report 11",
+    "author": "Author 3",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "product": "Monitor",
+    "category": "Electronics",
+    "region": "Australia",
+    "filterSelection": ["category", "date", "product", "region"]
+  },
+  {
+    "id": 12,
+    "title": "Sales Report 12",
+    "author": "Author 3",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "product": "Laptop",
+    "filterSelection": ["category", "date", "product", "sales"]
+  },
+  {
+    "id": 13,
+    "title": "Sales Report 13",
+    "author": "Author 5",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "product": "Laptop",
+    "region": "South America",
+    "filterSelection": ["category", "product"]
+  },
+  {
+    "id": 14,
+    "title": "Sales Report 14",
+    "author": "Author 2",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "product": "Headphones",
+    "region": "Australia",
+    "dateRange": {
+      "start": "2025-07-05",
+      "end": "2025-07-14"
+    },
+    "filterSelection": ["product", "region"]
+  },
+  {
+    "id": 15,
+    "title": "Sales Report 15",
+    "author": "Author 3",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "region": "South America",
+    "salesRange": {
+      "min": 1889,
+      "max": 3685
+    },
+    "dateRange": {
+      "start": "2025-07-28",
+      "end": "2025-07-23"
+    },
+    "filterSelection": ["sales", "category", "product"]
+  },
+  {
+    "id": 16,
+    "title": "Sales Report 16",
+    "author": "Author 1",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "product": "Headphones",
+    "salesRange": {
+      "min": 818,
+      "max": 4933
+    },
+    "filterSelection": ["sales", "category", "region", "product", "date"]
+  },
+  {
+    "id": 17,
+    "title": "Sales Report 17",
+    "author": "Author 5",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "dateRange": {
+      "start": "2025-07-29",
+      "end": "2025-07-25"
+    },
+    "filterSelection": ["product", "category"]
+  },
+  {
+    "id": 18,
+    "title": "Sales Report 18",
+    "author": "Author 2",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "product": "Desk Chair",
+    "region": "Europe",
+    "salesRange": {
+      "min": 703,
+      "max": 3148
+    },
+    "dateRange": {
+      "start": "2025-07-02",
+      "end": "2025-07-14"
+    },
+    "filterSelection": ["product", "sales", "category"]
+  },
+  {
+    "id": 19,
+    "title": "Sales Report 19",
+    "author": "Author 5",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "product": "Smartphone",
+    "dateRange": {
+      "start": "2025-07-01",
+      "end": "2025-07-09"
+    },
+    "filterSelection": ["sales", "product", "region", "date"]
+  },
+  {
+    "id": 20,
+    "title": "Sales Report 20",
+    "author": "Author 4",
+    "creationDate": "2025-08-05",
+    "creationTime": "08:10:56",
+    "product": "Notebook",
+    "salesRange": {
+      "min": 2412,
+      "max": 3727
+    },
+    "dateRange": {
+      "start": "2025-07-04",
+      "end": "2025-07-05"
+    },
+    "filterSelection": ["sales", "date", "product", "region", "category"]
+  }
+]
