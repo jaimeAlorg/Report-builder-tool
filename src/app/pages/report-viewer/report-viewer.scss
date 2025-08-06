@@ -257,6 +257,34 @@
       width: 100%;
       box-sizing: border-box;
       overflow-x: auto;
+
+      .table-subtitle {
+        font: var(--mat-sys-title-medium);
+      }
+
+      app-table {
+        ::ng-deep {
+          .mat-mdc-table {
+            .mat-mdc-header-cell {
+              font: var(--mat-sys-label-large);
+              padding: tokens.spacing(xs) tokens.spacing(sm);
+            }
+
+            .mat-mdc-cell {
+              font: var(--mat-sys-label-medium);
+              padding: tokens.spacing(xs) tokens.spacing(sm);
+            }
+
+            .mat-mdc-row {
+              min-height: 32px;
+            }
+
+            .mat-mdc-header-row {
+              min-height: 36px;
+            }
+          }
+        }
+      }
     }
   }
 }
