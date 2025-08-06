@@ -1,14 +1,40 @@
 <div class="report-viewer-container">
-  <div class="report-list-container">
+  <div
+    class="report-list-container"
+    [class.hidden-mobile]="isMobile && selectedReportId"
+  >
     <app-report-list-card
       (reportSelected)="onReportSelected($event)"
     ></app-report-list-card>
   </div>
-  <div class="report-view-container">
+  <div
+    class="report-view-container"
+    [class.show-mobile]="isMobile"
+    *ngIf="selectedReportId"
+  >
+    <div class="mobile-actions-container" *ngIf="isMobile && selectedReportId">
+      <button
+        matButton="outlined"
+        class="filter-button"
+        (click)="goBackToReportList()"
+      >
+        <mat-icon>arrow_back</mat-icon>
+        Back to reports
+      </button>
+      <button mat-button matButton="filled" class="export-button">
+        <mat-icon>file_download</mat-icon>
+        Export
+      </button>
+    </div>
     <div class="report-view-header">
       <div class="title-container">
         <h1 class="report-title">{{ reportData?.title }}</h1>
-        <button mat-button matButton="filled" class="export-button">
+        <button
+          mat-button
+          matButton="filled"
+          class="export-button"
+          *ngIf="!isMobile"
+        >
           <mat-icon>file_download</mat-icon>
           Export
         </button>

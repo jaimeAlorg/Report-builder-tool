@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ReportListCard } from '../../components/report-list-card/report-list-card';
 import { MatDivider } from "@angular/material/divider";
 import { MatButtonModule } from '@angular/material/button';
@@ -15,17 +15,40 @@ import { reportDTO } from '../../models/report-dtos';
   templateUrl: './report-viewer.html',
   styleUrl: './report-viewer.scss'
 })
-export class ReportViewer {
+export class ReportViewer implements OnInit {
   reportData: reportDTO | null = null;
   activeFilters: { label: string; value: string }[] = [];
+  selectedReportId: number | null = null;
+  isMobile: boolean = false;
+
+  MOBILE_BREAKPOINT: number = 768;
 
   constructor(private reportService: ReportService) { }
 
+  ngOnInit() {
+    this.checkMobile();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkMobile();
+  }
+
+  private checkMobile() {
+    this.isMobile = window.innerWidth <= this.MOBILE_BREAKPOINT;
+  }
+
   onReportSelected(reportId: number): void {
+    this.selectedReportId = reportId;
     this.reportService.getReportData(reportId)?.subscribe(reportData => {
       this.reportData = reportData;
       this.getActiveFilters();
     })
+  }
+
+  goBackToReportList(): void {
+    this.selectedReportId = null;
+    this.reportData = null;
   }
 
   getActiveFilters(): void {

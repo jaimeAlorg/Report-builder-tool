@@ -29,10 +29,6 @@ export class ReportListCard implements OnInit {
           ...report,
           selected: index === 0
         }));
-
-        if (this.reportList.length > 0 && this.reportList[0].id) {
-          this.reportSelected.emit(this.reportList[0].id);
-        }
       },
       error: (error) => {
         console.error('Error loading report list:', error);
