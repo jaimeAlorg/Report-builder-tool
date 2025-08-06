@@ -2,6 +2,7 @@ export interface reportItemDTO {
     id: number;
     title: string;
     creationDate: string;
+    creationTime: string;
     author: string;
     selected?: boolean;
 }

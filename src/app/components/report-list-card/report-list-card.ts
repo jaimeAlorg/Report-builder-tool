@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -13,8 +13,10 @@ import { reportItemDTO } from '../../models/report-dtos';
   styleUrl: './report-list-card.scss'
 })
 export class ReportListCard implements OnInit {
-  @Output() reportSelected: EventEmitter<number> = new EventEmitter<number>();
+  @Output() reportSelected: EventEmitter<number | null> = new EventEmitter<number | null>();
+  @Input() isMobileView: boolean = false;
   reportList: reportItemDTO[] = [];
+  selectedReport: reportItemDTO | null = null;
 
   constructor(private reportService: ReportService) { }
 
@@ -22,12 +24,19 @@ export class ReportListCard implements OnInit {
     this.getReportList();
   }
 
+  ngOnChanges(): void {
+    if (!this.isMobileView) {
+      this.reportList.forEach(report => report.selected = false);
+    }
+  }
+
   getReportList(): void {
     this.reportService.getReportList().subscribe({
       next: (reportList) => {
         this.reportList = reportList.map((report, index) => ({
           ...report,
-          selected: index === 0
+          creationDate: formatDate(report.creationDate, 'dd/MM/yyyy', 'en-US'),
+          creationTime: report.creationTime,
         }));
       },
       error: (error) => {
@@ -37,8 +46,14 @@ export class ReportListCard implements OnInit {
   }
 
   onReportClick(report: reportItemDTO): void {
-    this.reportList.forEach(r => r.selected = false);
-    report.selected = true;
-    this.reportSelected.emit(report.id);
+    if (this.selectedReport === report && report.selected) {
+      report.selected = !report.selected;
+      this.reportSelected.emit(null);
+    } else {
+      this.reportList.forEach(r => r.selected = false);
+      this.selectedReport = report;
+      report.selected = true;
+      this.reportSelected.emit(report.id);
+    }
   }
 }

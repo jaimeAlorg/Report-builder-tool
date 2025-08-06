@@ -38,7 +38,13 @@ export class ReportViewer implements OnInit {
     this.isMobile = window.innerWidth <= this.MOBILE_BREAKPOINT;
   }
 
-  onReportSelected(reportId: number): void {
+  onReportSelected(reportId: number | null): void {
+    if (reportId === null) {
+      this.reportData = null;
+      this.selectedReportId = null;
+      return;
+    }
+
     this.selectedReportId = reportId;
     this.reportService.getReportData(reportId)?.subscribe(reportData => {
       this.reportData = reportData;

@@ -4,8 +4,16 @@
     [class.hidden-mobile]="isMobile && selectedReportId"
   >
     <app-report-list-card
+      [isMobileView]="isMobile"
       (reportSelected)="onReportSelected($event)"
     ></app-report-list-card>
+  </div>
+  <div class="no-report-selected-container" *ngIf="!isMobile && !reportData">
+    <div class="no-report-content">
+      <mat-icon>description</mat-icon>
+      <h3>No report selected</h3>
+      <p>Please select a report from the list to view its details</p>
+    </div>
   </div>
   <div
     class="report-view-container"

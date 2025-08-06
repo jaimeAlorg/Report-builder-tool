@@ -10,7 +10,10 @@
     <div class="card-report-container" *ngFor="let report of reportList">
       <div class="card-report" (click)="onReportClick(report)">
         <div class="card-bullet-container">
-          <div class="card-bullet" [class.selected]="report.selected"></div>
+          <div
+            class="card-bullet"
+            [class.selected]="report.selected && !isMobileView"
+          ></div>
         </div>
         <div class="card-information">
           <div class="information-top">
@@ -18,8 +21,8 @@
           </div>
           <div class="information-bottom">
             <p class="report-meta">
-              {{ report.creationDate }} -
-              {{ report.author }}
+              {{ report.creationDate }}
+              {{ report.creationTime }}
             </p>
           </div>
         </div>

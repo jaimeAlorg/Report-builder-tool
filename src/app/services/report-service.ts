@@ -20,8 +20,8 @@ export class ReportService {
           id: report.id,
           title: report.title,
           creationDate: report.creationDate,
+          creationTime: report.creationTime,
           author: report.author,
-          selected: false
         }
         reportList.push(reportItem);
       });
