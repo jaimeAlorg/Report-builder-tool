@@ -21,7 +21,7 @@ export class ReportViewer implements OnInit {
   selectedReportId: number | null = null;
   isMobile: boolean = false;
 
-  MOBILE_BREAKPOINT: number = 768;
+  MOBILE_BREAKPOINT: number = 1000;
 
   constructor(private reportService: ReportService) { }
 
