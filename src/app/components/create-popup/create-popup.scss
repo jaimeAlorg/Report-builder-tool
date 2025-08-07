@@ -1,0 +1,145 @@
+@use "../../styles/design-tokens" as tokens;
+
+.create-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    .filter-container {
+      display: flex;
+      flex-direction: column;
+      gap: tokens.spacing(sm);
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+
+      .field-label {
+        font: var(--mat-sys-body-large);
+        color: var(--mat-sys-tertiary);
+        font-weight: 600;
+
+        margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .custom-form-field {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .sales-range-container {
+        display: flex;
+        align-items: center;
+        gap: tokens.spacing(md);
+        width: 100%;
+
+        .range-input {
+          flex: 1;
+        }
+
+        .range-separator {
+          font: var(--mat-sys-body-large);
+          color: var(--mat-sys-on-surface-variant);
+          padding: 0 tokens.spacing(md);
+          font-weight: 500;
+          font-size: 1.2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 2.5rem;
+          margin-top: 0.25rem;
+        }
+      }
+    }
+  }
+
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-top: tokens.spacing(md);
+    margin-bottom: tokens.spacing(sm);
+    gap: tokens.spacing(sm);
+    font: var(--mat-sys-body-large);
+    color: var(--mat-sys-tertiary);
+    font-weight: 500;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: tokens.spacing(md);
+    margin-top: tokens.spacing(lg);
+
+    .cancel-button {
+      color: var(--mat-sys-tertiary) !important;
+      border: 1px solid var(--mat-sys-tertiary);
+      border-radius: 8px;
+      padding: tokens.spacing(sm) tokens.spacing(lg);
+    }
+
+    .submit-button {
+      background-color: var(--mat-sys-tertiary) !important;
+      color: var(--mat-sys-on-tertiary) !important;
+      border-radius: 8px;
+      padding: tokens.spacing(sm) tokens.spacing(lg);
+    }
+  }
+}
+
+::ng-deep {
+  .mat-mdc-form-field.custom-form-field {
+    .mat-mdc-text-field-wrapper {
+      background-color: white !important;
+    }
+    .mat-mdc-form-field-infix {
+      min-height: 2.5rem !important;
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+
+    .mat-mdc-input-element {
+      font-size: 0.9rem !important;
+      font-weight: 00 !important;
+      line-height: 1.2 !important;
+    }
+
+    .mat-mdc-select {
+      font-size: 0.9rem !important;
+      line-height: 1.2 !important;
+    }
+
+    .mat-mdc-input-element::placeholder {
+      font-size: 0.9rem !important;
+      opacity: 0.8 !important;
+    }
+
+    .mat-mdc-select-placeholder {
+      font-size: 0.9rem !important;
+    }
+  }
+}
+
+mat-option {
+  background-color: white !important;
+  margin: -8px 0 -8px 0 !important;
+  padding-bottom: 4px !important;
+  font-size: 0.875rem !important;
+
+  &:hover {
+    background-color: var(--mat-sys-surface-variant) !important;
+  }
+}

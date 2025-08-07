@@ -1,0 +1,86 @@
+<div class="create-container">
+  <app-dialog [dialogTitle]="'Create Report'">
+    <ng-content dialog-body>
+      <div class="form-container">
+        <div class="filter-container">
+          <mat-label class="field-label">Report name</mat-label>
+          <mat-form-field appearance="outline" class="custom-form-field">
+            <input matInput placeholder="Enter report name" />
+          </mat-form-field>
+        </div>
+        <div class="filter-container">
+          <mat-label class="field-label">Category</mat-label>
+          <mat-form-field appearance="outline" class="custom-form-field">
+            <mat-select multiple placeholder="Select categories">
+              @for (food of foods; track food) {
+              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="filter-container">
+          <mat-label class="field-label">Region</mat-label>
+          <mat-form-field appearance="outline" class="custom-form-field">
+            <mat-select multiple placeholder="Select regions">
+              @for (food of foods; track food) {
+              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="filter-container">
+          <mat-label class="field-label">Product</mat-label>
+          <mat-form-field appearance="outline" class="custom-form-field">
+            <mat-select multiple placeholder="Select products">
+              @for (food of foods; track food) {
+              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="filter-container">
+          <mat-label class="field-label">Sales range</mat-label>
+          <div class="sales-range-container">
+            <mat-form-field
+              appearance="outline"
+              class="custom-form-field range-input"
+            >
+              <input matInput type="number" placeholder="Min" />
+            </mat-form-field>
+            <mat-form-field
+              appearance="outline"
+              class="custom-form-field range-input"
+            >
+              <input matInput type="number" placeholder="Max" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="filter-container">
+          <mat-label class="field-label">Date range</mat-label>
+          <mat-form-field appearance="outline" class="custom-form-field">
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate placeholder="Start date" />
+              <input matEndDate placeholder="End date" />
+            </mat-date-range-input>
+            <mat-hint class="mat-hint">DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+        </div>
+        <div class="checkbox-container">
+          <mat-label class="field-label">Add product id?</mat-label>
+          <mat-checkbox class="product-id-checkbox"> </mat-checkbox>
+        </div>
+      </div>
+    </ng-content>
+    <ng-content dialog-buttons>
+      <div class="button-container">
+        <button matButton="outlined" class="cancel-button">Cancel</button>
+        <button matButton="filled" class="submit-button">Submit</button>
+      </div>
+    </ng-content>
+  </app-dialog>
+</div>
