@@ -13,10 +13,11 @@ export interface reportDTO {
     creationDate: string;
     creationTime: string;
     author: string;
-    products?: string;
-    category?: string;
-    region?: string;
-    salesRange?: string;
-    dateRange?: string;
-    filterSelection?: string[];
+    products: string[];
+    category: string[];
+    region: string[];
+    dateRange?: { start: string; end: string };
+    includeId?: boolean;
+    includeSalesData?: boolean;
+
 }

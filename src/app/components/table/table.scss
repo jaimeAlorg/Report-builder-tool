@@ -37,3 +37,19 @@
     white-space: nowrap;
   }
 }
+
+.no-data-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: var(--mat-sys-surface-container-lowest);
+  border-radius: 8px;
+
+  p {
+    color: var(--mat-sys-on-surface-variant);
+    font: var(--mat-sys-body-large);
+    margin: 0;
+    text-align: center;
+  }
+}

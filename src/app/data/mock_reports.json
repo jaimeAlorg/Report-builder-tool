@@ -1,274 +1,255 @@
 [
   {
     "id": 1,
-    "title": "Sales Report - Q1 2025",
-    "author": "Author 5",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "product": "Smartphone",
-    "category": "Stationery",
-    "region": "Australia",
-    "dateRange": {
-      "start": "2025-07-22",
-      "end": "2025-07-04"
-    },
-    "filterSelection": ["date", "category", "product"]
+    "title": "Furniture Report - Australia Q3",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Carlos Mendoza",
+    "products": [
+      "Smartphone",
+      "Notebook",
+      "Desk Chair",
+      "Laptop",
+      "Coffee Maker",
+      "Desk Lamp"
+    ],
+    "category": ["Appliances", "Furniture", "Electronics", "Stationery"],
+    "region": ["Asia", "Europe", "South America", "North America"],
+    "includeId": true,
+    "includeSalesData": false
   },
   {
     "id": 2,
-    "title": "Sales Report 2",
-    "author": "Author 2",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "category": "Stationery",
-    "region": "Australia",
-    "dateRange": {
-      "start": "2025-07-23",
-      "end": "2025-07-27"
-    },
-    "filterSelection": ["region", "sales"]
+    "title": "Top Products in Africa - July",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Emily Zhang",
+    "products": ["Smartphone", "Laptop"],
+    "category": ["Electronics"],
+    "region": ["Asia", "Europe"],
+    "includeId": false,
+    "includeSalesData": false
   },
   {
     "id": 3,
-    "title": "Sales Report 3",
-    "author": "Author 4",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "product": "Desk Chair",
-    "region": "Europe",
-    "filterSelection": ["product", "category"]
+    "title": "Appliance Sales Summary - Europe",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Liam O'Connor",
+    "products": ["Monitor", "Notebook", "Desk Chair", "Laptop", "Desk Lamp"],
+    "category": ["Furniture", "Electronics", "Stationery"],
+    "region": [
+      "Australia",
+      "Africa",
+      "South America",
+      "North America",
+      "Europe"
+    ],
+    "includeId": false,
+    "includeSalesData": false
   },
   {
     "id": 4,
-    "title": "Sales Report 4",
-    "author": "Author 3",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "category": "Furniture",
-    "salesRange": {
-      "min": 2030,
-      "max": 3369
-    },
+    "title": "Stationery Performance Report",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Carlos Mendoza",
+    "products": ["Coffee Maker", "Notebook", "Monitor", "Desk Chair"],
+    "category": ["Stationery", "Furniture", "Electronics", "Appliances"],
+    "region": ["Australia", "Africa", "Europe", "South America"],
     "dateRange": {
-      "start": "2025-07-16",
-      "end": "2025-07-09"
+      "start": "2025-07-01",
+      "end": "2025-07-14"
     },
-    "filterSelection": ["region", "category", "sales", "date", "product"]
+    "includeId": false,
+    "includeSalesData": false
   },
   {
     "id": 5,
-    "title": "Sales Report 5",
-    "author": "Author 2",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "product": "Coffee Maker",
-    "filterSelection": ["date", "product", "region"]
+    "title": "North America Electronics Sales",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Liam O'Connor",
+    "products": ["Coffee Maker", "Headphones", "Notebook", "Laptop"],
+    "category": ["Appliances", "Electronics", "Stationery"],
+    "region": ["Africa", "South America"],
+    "dateRange": {
+      "start": "2025-07-13",
+      "end": "2025-07-30"
+    },
+    "includeId": true,
+    "includeSalesData": true
   },
   {
     "id": 6,
-    "title": "Sales Report 6",
-    "author": "Author 1",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "region": "Africa",
-    "salesRange": {
-      "min": 1833,
-      "max": 3130
-    },
+    "title": "Coffee Maker Regional Comparison",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Sara Meier",
+    "products": [
+      "Smartphone",
+      "Monitor",
+      "Notebook",
+      "Desk Chair",
+      "Coffee Maker"
+    ],
+    "category": ["Stationery", "Furniture", "Electronics", "Appliances"],
+    "region": ["Australia", "Asia", "Africa", "South America", "Europe"],
     "dateRange": {
       "start": "2025-07-01",
-      "end": "2025-07-13"
+      "end": "2025-07-25"
     },
-    "filterSelection": ["region", "sales", "date", "category"]
+    "includeId": true,
+    "includeSalesData": true
   },
   {
     "id": 7,
-    "title": "Sales Report 7",
-    "author": "Author 5",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "product": "Desk Chair",
-    "category": "Furniture",
-    "salesRange": {
-      "min": 2102,
-      "max": 4819
+    "title": "Notebook Trends in 2025",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Sara Meier",
+    "products": ["Coffee Maker", "Notebook", "Desk Lamp"],
+    "category": ["Stationery", "Furniture", "Appliances"],
+    "region": ["Europe", "North America"],
+    "dateRange": {
+      "start": "2025-07-04",
+      "end": "2025-07-29"
     },
-    "filterSelection": ["sales", "category", "date", "product", "region"]
+    "includeId": true,
+    "includeSalesData": true
   },
   {
     "id": 8,
-    "title": "Sales Report 8",
-    "author": "Author 4",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "region": "Africa",
-    "salesRange": {
-      "min": 2123,
-      "max": 4934
-    },
+    "title": "Desk Chair Performance by Region",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Alice Thompson",
+    "products": ["Coffee Maker", "Notebook", "Laptop"],
+    "category": ["Appliances", "Electronics", "Stationery"],
+    "region": ["Africa", "Europe", "South America", "North America"],
     "dateRange": {
       "start": "2025-07-12",
-      "end": "2025-07-24"
+      "end": "2025-07-28"
     },
-    "filterSelection": ["region", "date"]
+    "includeId": true,
+    "includeSalesData": true
   },
   {
     "id": 9,
-    "title": "Sales Report 9",
-    "author": "Author 4",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
+    "title": "Laptop Sales Summary",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Liam O'Connor",
+    "products": ["Smartphone", "Laptop"],
+    "category": ["Electronics"],
+    "region": ["Asia", "North America"],
     "dateRange": {
-      "start": "2025-07-27",
-      "end": "2025-07-27"
+      "start": "2025-07-12",
+      "end": "2025-07-25"
     },
-    "filterSelection": ["category", "date", "product", "sales"]
+    "includeId": false,
+    "includeSalesData": false
   },
   {
     "id": 10,
-    "title": "Sales Report 10",
-    "author": "Author 5",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "region": "Asia",
+    "title": "Headphones Popularity Report",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Alice Thompson",
+    "products": ["Headphones", "Desk Chair"],
+    "category": ["Furniture", "Electronics"],
+    "region": ["Africa", "South America"],
     "dateRange": {
-      "start": "2025-07-21",
-      "end": "2025-07-20"
+      "start": "2025-07-04",
+      "end": "2025-07-13"
     },
-    "filterSelection": ["sales", "date", "region", "product", "category"]
+    "includeId": false,
+    "includeSalesData": true
   },
   {
     "id": 11,
-    "title": "Sales Report 11",
-    "author": "Author 3",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "product": "Monitor",
-    "category": "Electronics",
-    "region": "Australia",
-    "filterSelection": ["category", "date", "product", "region"]
+    "title": "Smartphone Regional Sales",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Sara Meier",
+    "products": ["Monitor", "Desk Lamp", "Laptop"],
+    "category": ["Furniture", "Electronics"],
+    "region": ["Australia", "North America"],
+    "dateRange": {
+      "start": "2025-07-01",
+      "end": "2025-07-12"
+    },
+    "includeId": true,
+    "includeSalesData": false
   },
   {
     "id": 12,
-    "title": "Sales Report 12",
-    "author": "Author 3",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "product": "Laptop",
-    "filterSelection": ["category", "date", "product", "sales"]
+    "title": "Monitor and Accessories Sales",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Sara Meier",
+    "products": [
+      "Smartphone",
+      "Headphones",
+      "Desk Chair",
+      "Coffee Maker",
+      "Desk Lamp"
+    ],
+    "category": ["Furniture", "Electronics", "Appliances"],
+    "region": ["Australia", "Asia", "Africa", "South America", "Europe"],
+    "dateRange": {
+      "start": "2025-07-03",
+      "end": "2025-07-25"
+    },
+    "includeId": true,
+    "includeSalesData": false
   },
   {
     "id": 13,
-    "title": "Sales Report 13",
-    "author": "Author 5",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "product": "Laptop",
-    "region": "South America",
-    "filterSelection": ["category", "product"]
+    "title": "South America Multi-Category Report",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Emily Zhang",
+    "products": ["Notebook", "Desk Chair"],
+    "category": ["Furniture", "Stationery"],
+    "region": ["Africa", "South America"],
+    "dateRange": {
+      "start": "2025-07-04",
+      "end": "2025-07-19"
+    },
+    "includeId": true,
+    "includeSalesData": true
   },
   {
     "id": 14,
-    "title": "Sales Report 14",
-    "author": "Author 2",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "product": "Headphones",
-    "region": "Australia",
+    "title": "Full Product Overview July 2025",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Sara Meier",
+    "products": ["Coffee Maker", "Notebook", "Desk Chair", "Laptop"],
+    "category": ["Stationery", "Furniture", "Electronics", "Appliances"],
+    "region": ["Africa", "South America", "Europe"],
     "dateRange": {
-      "start": "2025-07-05",
-      "end": "2025-07-14"
+      "start": "2025-07-07",
+      "end": "2025-07-30"
     },
-    "filterSelection": ["product", "region"]
+    "includeId": true,
+    "includeSalesData": false
   },
   {
     "id": 15,
-    "title": "Sales Report 15",
-    "author": "Author 3",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "region": "South America",
-    "salesRange": {
-      "min": 1889,
-      "max": 3685
-    },
+    "title": "Sales Overview - South America Electronics",
+    "creationDate": "2025-08-08",
+    "creationTime": "11:44:12",
+    "author": "Emily Zhang",
+    "products": ["Coffee Maker", "Smartphone", "Notebook", "Desk Lamp"],
+    "category": ["Stationery", "Furniture", "Electronics", "Appliances"],
+    "region": ["Africa", "Asia", "Europe", "South America"],
     "dateRange": {
-      "start": "2025-07-28",
-      "end": "2025-07-23"
-    },
-    "filterSelection": ["sales", "category", "product"]
-  },
-  {
-    "id": 16,
-    "title": "Sales Report 16",
-    "author": "Author 1",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "product": "Headphones",
-    "salesRange": {
-      "min": 818,
-      "max": 4933
-    },
-    "filterSelection": ["sales", "category", "region", "product", "date"]
-  },
-  {
-    "id": 17,
-    "title": "Sales Report 17",
-    "author": "Author 5",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "dateRange": {
-      "start": "2025-07-29",
+      "start": "2025-07-06",
       "end": "2025-07-25"
     },
-    "filterSelection": ["product", "category"]
-  },
-  {
-    "id": 18,
-    "title": "Sales Report 18",
-    "author": "Author 2",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "product": "Desk Chair",
-    "region": "Europe",
-    "salesRange": {
-      "min": 703,
-      "max": 3148
-    },
-    "dateRange": {
-      "start": "2025-07-02",
-      "end": "2025-07-14"
-    },
-    "filterSelection": ["product", "sales", "category"]
-  },
-  {
-    "id": 19,
-    "title": "Sales Report 19",
-    "author": "Author 5",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "product": "Smartphone",
-    "dateRange": {
-      "start": "2025-07-01",
-      "end": "2025-07-09"
-    },
-    "filterSelection": ["sales", "product", "region", "date"]
-  },
-  {
-    "id": 20,
-    "title": "Sales Report 20",
-    "author": "Author 4",
-    "creationDate": "2025-08-05",
-    "creationTime": "08:10:56",
-    "product": "Notebook",
-    "salesRange": {
-      "min": 2412,
-      "max": 3727
-    },
-    "dateRange": {
-      "start": "2025-07-04",
-      "end": "2025-07-05"
-    },
-    "filterSelection": ["sales", "date", "product", "region", "category"]
+    "includeId": true,
+    "includeSalesData": false
   }
 ]

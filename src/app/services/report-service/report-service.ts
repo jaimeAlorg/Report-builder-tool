@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import reportData from '../../data/mock_reports.json';
-import salesDate from '../../data/mock_sales_data.json';
+import salesData from '../../data/mock_sales_data.json';
 import { reportItemDTO, reportDTO } from '../../models/report-dtos';
 import { Observable } from 'rxjs';
 
@@ -30,8 +30,6 @@ export class ReportService {
     });
   }
 
-  getReportListByFilters() { }
-
   getReportData(reportId: number): Observable<reportDTO> | null {
     const report = reportData.find((report: any) => report.id === reportId);
     if (report) {
@@ -42,35 +40,74 @@ export class ReportService {
           creationDate: report.creationDate,
           creationTime: report.creationTime,
           author: report.author,
-          products: report.product,
-          category: report.category,
-          region: report.region,
-          salesRange: (report.salesRange?.min && report.salesRange?.max) ? this.buildStringRange(report.salesRange) : null,
-          dateRange: (report.dateRange?.start && report.dateRange?.end) ? this.buildStringRange({ min: report.dateRange.start, max: report.dateRange.end }) : null,
-          filterSelection: report.filterSelection || []
-        } as reportDTO);
+          products: report.products || [],
+          category: report.category || [],
+          region: report.region || [],
+          dateRange: (report.dateRange?.start && report.dateRange?.end) ? { start: report.dateRange.start, end: report.dateRange.end } : undefined,
+          includeId: report.includeId,
+          includeSalesData: report.includeSalesData
+        });
         observer.complete();
       });
     }
     return null;
   }
 
-  buildStringRange(range: { min: string | number, max: string | number }): string {
-    let rangeString = range.min.toString() + ' | ' + range.max.toString();
-
-    return rangeString;
-  }
-
-  getReportTableData(tableHeaders: string[]): Observable<any[]> {
+  buildTableData(reportDTO: reportDTO | null): Observable<any[]> {
     return new Observable<any[]>(observer => {
-      const data = salesDate.map((item: any) => {
-        const row: any = {};
-        tableHeaders.forEach(header => {
-          row[header] = item[header];
+      if (!reportDTO) {
+        observer.next([]);
+        observer.complete();
+        return;
+      }
+
+      let data = [...salesData];
+
+      if (reportDTO.dateRange) {
+        const start = new Date(reportDTO.dateRange.start);
+        const end = new Date(reportDTO.dateRange.end);
+        data = data.filter(item => {
+          const itemDate = new Date(item.date);
+          return itemDate >= start && itemDate <= end;
         });
+      }
+
+      data = data.filter(item => {
+        const productMatch = !reportDTO.products.length ||
+          reportDTO.products.some(p => p.toLowerCase() === item.product.toLowerCase());
+
+        const categoryMatch = !reportDTO.category.length ||
+          reportDTO.category.some(c => c.toLowerCase() === item.category.toLowerCase());
+
+        const regionMatch = !reportDTO.region.length ||
+          reportDTO.region.some(r => r.toLowerCase() === item.region.toLowerCase());
+
+        return productMatch && categoryMatch && regionMatch;
+      });
+
+      const tableData = data.map(item => {
+        const row: any = {
+          product: item.product,
+          category: item.category,
+          region: item.region
+        };
+
+        if (reportDTO.dateRange) {
+          row.date = item.date;
+        }
+
+        if (reportDTO.includeId) {
+          row.id = item.id;
+        }
+
+        if (reportDTO.includeSalesData) {
+          row.sales = item.sales;
+        }
+
         return row;
       });
-      observer.next(data);
+
+      observer.next(tableData);
       observer.complete();
     });
   }
