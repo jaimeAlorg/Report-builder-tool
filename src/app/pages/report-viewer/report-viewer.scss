@@ -52,6 +52,7 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      gap: tokens.spacing(sm);
 
       .report-title {
         font: var(--mat-sys-headline-medium);
@@ -102,8 +103,9 @@
 
       .filter-item {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         position: relative;
+        line-height: 1.5;
 
         &::before {
           content: "•";
@@ -111,6 +113,7 @@
           font-weight: bold;
           position: absolute;
           left: -#{tokens.spacing(md)};
+          top: 0;
         }
 
         .filter-label {
@@ -119,12 +122,17 @@
           margin: 0;
           margin-right: tokens.spacing(xs);
           font-weight: 500;
+          flex-shrink: 0;
         }
 
         .filter-value {
           font: var(--mat-sys-body-medium);
           color: var(--mat-sys-on-surface);
           margin: 0;
+          word-wrap: break-word;
+          word-break: break-word;
+          overflow-wrap: break-word;
+          flex: 1;
         }
       }
     }
