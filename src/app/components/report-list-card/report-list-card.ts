@@ -22,6 +22,7 @@ export class ReportListCard implements OnInit {
 
   ngOnInit(): void {
     this.getReportList();
+    this.orderReportsByDateAndTime();
   }
 
   ngOnChanges(): void {
@@ -42,6 +43,16 @@ export class ReportListCard implements OnInit {
       error: (error) => {
         console.error('Error loading report list:', error);
       }
+    });
+  }
+
+  orderReportsByDateAndTime(): void {
+    this.reportList.sort((a, b) => {
+      const dateA = new Date(a.creationDate).getTime();
+      const dateB = new Date(b.creationDate).getTime();
+      const timeA = new Date(`1970-01-01T${a.creationTime}`).getTime();
+      const timeB = new Date(`1970-01-01T${b.creationTime}`).getTime();
+      return dateB - dateA || timeB - timeA;
     });
   }
 
