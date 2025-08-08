@@ -36,6 +36,10 @@ $nav-dimensions: (
   mobile-nav-item-width: 60px,
 );
 
+$breakpoints: (
+  mobile: 1000px,
+);
+
 @function spacing($size) {
   @return map.get($spacing, $size);
 }
@@ -54,4 +58,8 @@ $nav-dimensions: (
 
 @function nav-dimension($key) {
   @return map.get($nav-dimensions, $key);
+}
+
+@function breakpoint($size) {
+  @return map.get($breakpoints, $size);
 }

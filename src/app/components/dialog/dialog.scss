@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: tokens.spacing(xxl);
+  padding: tokens.spacing(xl);
   box-sizing: border-box;
 
   .dialog-title {
@@ -16,10 +16,17 @@
     padding-bottom: tokens.spacing(xl);
 
     h2 {
-      font: var(--mat-sys-headline-large);
+      font: var(--mat-sys-headline-medium);
       color: var(--mat-sys-on-tertiary-container);
       font-weight: 500;
       margin: 0;
+    }
+
+    @media (max-width: tokens.breakpoint(mobile)) {
+      h2 {
+        font: var(--mat-sys-headline-small);
+        font-weight: 500;
+      }
     }
 
     .close-icon {

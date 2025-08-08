@@ -5,6 +5,7 @@
     "reports",
     "routing",
     "table",
-    "report-viewer"
+    "report-viewer",
+    "dialog"
   ]
 }

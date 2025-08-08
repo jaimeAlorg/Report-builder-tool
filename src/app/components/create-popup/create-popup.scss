@@ -8,10 +8,14 @@
   box-sizing: border-box;
   overflow: hidden;
 
+  @media (max-width: tokens.breakpoint(mobile)) {
+    padding: tokens.spacing(xs);
+  }
+
   .form-container {
     display: flex;
     flex-direction: column;
-
+    gap: tokens.spacing(xs);
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -19,7 +23,7 @@
     .filter-container {
       display: flex;
       flex-direction: column;
-      gap: tokens.spacing(sm);
+      gap: tokens.spacing(xs);
       width: 100%;
       max-width: 100%;
       box-sizing: border-box;
@@ -28,11 +32,14 @@
         font: var(--mat-sys-body-large);
         color: var(--mat-sys-tertiary);
         font-weight: 600;
-
         margin: 0;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+
+        @media (max-width: tokens.breakpoint(mobile)) {
+          font: var(--mat-sys-body-large);
+        }
       }
 
       .custom-form-field {
@@ -44,7 +51,7 @@
       .sales-range-container {
         display: flex;
         align-items: center;
-        gap: tokens.spacing(md);
+        gap: tokens.spacing(sm);
         width: 100%;
 
         .range-input {
@@ -54,14 +61,14 @@
         .range-separator {
           font: var(--mat-sys-body-large);
           color: var(--mat-sys-on-surface-variant);
-          padding: 0 tokens.spacing(md);
+          padding: 0 tokens.spacing(sm);
           font-weight: 500;
           font-size: 1.2rem;
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 2.5rem;
-          margin-top: 0.25rem;
+          height: 2rem;
+          margin-top: 0.1rem;
         }
       }
     }
@@ -70,9 +77,9 @@
   .checkbox-container {
     display: flex;
     align-items: center;
-    margin-top: tokens.spacing(md);
-    margin-bottom: tokens.spacing(sm);
-    gap: tokens.spacing(sm);
+    margin-top: tokens.spacing(sm);
+    margin-bottom: tokens.spacing(xs);
+    gap: tokens.spacing(xs);
     font: var(--mat-sys-body-large);
     color: var(--mat-sys-tertiary);
     font-weight: 500;
@@ -81,21 +88,35 @@
   .button-container {
     display: flex;
     justify-content: flex-end;
-    gap: tokens.spacing(md);
-    margin-top: tokens.spacing(lg);
+    gap: tokens.spacing(sm);
+    margin-top: 0;
 
     .cancel-button {
       color: var(--mat-sys-tertiary) !important;
       border: 1px solid var(--mat-sys-tertiary);
       border-radius: 8px;
-      padding: tokens.spacing(sm) tokens.spacing(lg);
+      padding: tokens.spacing(xs) tokens.spacing(md);
+      transition: all 0.2s ease;
+      font-size: 0.875rem;
+
+      &:hover {
+        background-color: var(--mat-sys-tertiary) !important;
+        color: var(--mat-sys-on-tertiary) !important;
+      }
     }
 
     .submit-button {
       background-color: var(--mat-sys-tertiary) !important;
       color: var(--mat-sys-on-tertiary) !important;
       border-radius: 8px;
-      padding: tokens.spacing(sm) tokens.spacing(lg);
+      padding: tokens.spacing(xs) tokens.spacing(md);
+      transition: all 0.2s ease;
+      font-size: 0.875rem;
+
+      &:hover {
+        background-color: var(--mat-sys-tertiary-container) !important;
+        color: var(--mat-sys-on-tertiary-container) !important;
+      }
     }
   }
 }
@@ -106,14 +127,20 @@
       background-color: white !important;
     }
     .mat-mdc-form-field-infix {
-      min-height: 2.5rem !important;
-      padding-top: 0.5rem !important;
-      padding-bottom: 0.5rem !important;
+      min-height: 2rem !important;
+      padding-top: 0.375rem !important;
+      padding-bottom: 0.375rem !important;
+
+      @media (max-width: tokens.breakpoint(mobile)) {
+        min-height: 1.75rem !important;
+        padding-top: 0.25rem !important;
+        padding-bottom: 0.25rem !important;
+      }
     }
 
     .mat-mdc-input-element {
       font-size: 0.9rem !important;
-      font-weight: 00 !important;
+      font-weight: 400 !important;
       line-height: 1.2 !important;
     }
 
@@ -130,14 +157,19 @@
     .mat-mdc-select-placeholder {
       font-size: 0.9rem !important;
     }
+
+    .mat-mdc-form-field-hint {
+      font-size: 0.7rem !important;
+    }
   }
 }
 
 mat-option {
   background-color: white !important;
-  margin: -8px 0 -8px 0 !important;
-  padding-bottom: 4px !important;
+  margin: -6px 0 -6px 0 !important;
+  padding: 2px 16px !important;
   font-size: 0.875rem !important;
+  line-height: 1.2 !important;
 
   &:hover {
     background-color: var(--mat-sys-surface-variant) !important;
