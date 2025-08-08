@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import reportData from '../data/mock_reports.json';
-import salesDate from '../data/mock_sales_data.json';
-import { reportItemDTO, reportDTO } from '../models/report-dtos';
+import reportData from '../../data/mock_reports.json';
+import salesDate from '../../data/mock_sales_data.json';
+import { reportItemDTO, reportDTO } from '../../models/report-dtos';
 import { Observable } from 'rxjs';
 
 @Injectable({

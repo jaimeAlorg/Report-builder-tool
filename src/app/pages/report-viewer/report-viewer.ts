@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Table } from '../../components/table/table';
-import { ReportService } from '../../services/report-service';
+import { ReportService } from '../../services/report-service/report-service';
 import { CommonModule } from '@angular/common';
 import { reportDTO } from '../../models/report-dtos';
 

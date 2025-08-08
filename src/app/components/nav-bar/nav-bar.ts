@@ -17,6 +17,8 @@ export class NavBar implements OnInit, OnDestroy {
   private routerSubscription: Subscription = new Subscription();
   isMobileMenuOpen: boolean = false;
 
+  constructor(private router: Router) { }
+
   ngOnInit() {
     this.routerSubscription = this.router.events.subscribe(event => {
       if (this.isMobileMenuOpen) {
@@ -39,7 +41,4 @@ export class NavBar implements OnInit, OnDestroy {
       data: {}
     });
   }
-
-  constructor(private router: Router) { }
-
 }

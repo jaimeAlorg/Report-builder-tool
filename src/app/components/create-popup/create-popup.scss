@@ -28,20 +28,6 @@
       max-width: 100%;
       box-sizing: border-box;
 
-      .field-label {
-        font: var(--mat-sys-body-large);
-        color: var(--mat-sys-tertiary);
-        font-weight: 600;
-        margin: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-
-        @media (max-width: tokens.breakpoint(mobile)) {
-          font: var(--mat-sys-body-large);
-        }
-      }
-
       .custom-form-field {
         width: 100%;
         max-width: 100%;
@@ -76,13 +62,25 @@
 
   .checkbox-container {
     display: flex;
-    align-items: center;
-    margin-top: tokens.spacing(sm);
+    flex-direction: column;
+    margin-top: tokens.spacing(md);
     margin-bottom: tokens.spacing(xs);
     gap: tokens.spacing(xs);
-    font: var(--mat-sys-body-large);
-    color: var(--mat-sys-tertiary);
-    font-weight: 500;
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      .field-label {
+        font: var(--mat-sys-body-large);
+        color: var(--mat-sys-tertiary);
+        font-weight: 500;
+        min-width: fit-content;
+
+        @media (max-width: tokens.breakpoint(mobile)) {
+          font: var(--mat-sys-body-medium);
+        }
+      }
+    }
   }
 
   .button-container {
@@ -173,5 +171,20 @@ mat-option {
 
   &:hover {
     background-color: var(--mat-sys-surface-variant) !important;
+  }
+}
+
+.field-label {
+  font: var(--mat-sys-body-large);
+  color: var(--mat-sys-tertiary);
+  font-weight: 600;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @media (max-width: tokens.breakpoint(mobile)) {
+    font: var(--mat-sys-body-large);
+    font-weight: 500;
   }
 }

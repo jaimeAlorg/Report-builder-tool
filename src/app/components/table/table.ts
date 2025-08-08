@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { ReportService } from '../../services/report-service';
+import { ReportService } from '../../services/report-service/report-service';
 import { CommonModule } from '@angular/common';
 
 @Component({

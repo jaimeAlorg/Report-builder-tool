@@ -1,4 +1,5 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, inject, Input, input } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -9,11 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class Dialog {
   @Input() dialogTitle: string = 'Default Title';
+  private dialogRef = inject(MatDialogRef<Dialog>)
 
   constructor() {
   }
 
   closeDialog(): void {
-    console.log('Dialog closed');
+    this.dialogRef.close();
   }
 }
