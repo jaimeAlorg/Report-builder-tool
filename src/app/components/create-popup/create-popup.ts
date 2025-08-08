@@ -51,8 +51,8 @@ export class CreatePopup implements OnInit {
     }
   }
 
-  cancelReport(): void {
-    this.dialogRef.close();
+  resetForm(): void {
+    this.createReportForm.reset();
   }
 
   populateFilters(): void {

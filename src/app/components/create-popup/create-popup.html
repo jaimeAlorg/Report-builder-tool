@@ -98,12 +98,8 @@
     </ng-content>
     <ng-content dialog-buttons>
       <div class="button-container">
-        <button
-          matButton="outlined"
-          class="cancel-button"
-          (click)="cancelReport()"
-        >
-          Cancel
+        <button matButton="outlined" class="reset-button" (click)="resetForm()">
+          Reset
         </button>
         <button
           matButton="filled"
