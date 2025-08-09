@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { ReportService } from '../../services/report-service/report-service';
 import { CommonModule } from '@angular/common';
-import { reportDTO } from '../../models/report-dtos';
+import { ReportDTO } from '../../models/report-dtos';
 
 @Component({
   selector: 'app-table',
@@ -11,7 +11,7 @@ import { reportDTO } from '../../models/report-dtos';
   styleUrl: './table.scss'
 })
 export class Table implements OnInit, OnChanges {
-  @Input() reportData: reportDTO | null = null;
+  @Input() reportData: ReportDTO | null = null;
   dataSource: any[] = [];
   displayedColumns: string[] = [];
 

@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { ReportService } from '../../services/report-service/report-service';
-import { reportItemDTO } from '../../models/report-dtos';
+import { ReportItemDTO } from '../../models/report-dtos';
 
 @Component({
   selector: 'app-report-list-card',
@@ -15,8 +15,8 @@ import { reportItemDTO } from '../../models/report-dtos';
 export class ReportListCard implements OnInit {
   @Output() reportSelected: EventEmitter<number | null> = new EventEmitter<number | null>();
   @Input() isMobileView: boolean = false;
-  reportList: reportItemDTO[] = [];
-  selectedReport: reportItemDTO | null = null;
+  reportList: ReportItemDTO[] = [];
+  selectedReport: ReportItemDTO | null = null;
 
   constructor(private reportService: ReportService) { }
 
@@ -56,7 +56,7 @@ export class ReportListCard implements OnInit {
     });
   }
 
-  onReportClick(report: reportItemDTO): void {
+  onReportClick(report: ReportItemDTO): void {
     if (this.selectedReport === report && report.selected) {
       report.selected = !report.selected;
       this.reportSelected.emit(null);

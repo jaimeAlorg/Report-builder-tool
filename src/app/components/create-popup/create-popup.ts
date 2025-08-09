@@ -10,6 +10,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import filterData from '../../data/mock_filters.json';
+import { ReportService } from '../../services/report-service/report-service';
+import { ReportDTO, ReportItemDTO } from '../../models/report-dtos';
 @Component({
   selector: 'app-create-popup',
   imports: [Dialog, MatFormFieldModule, MatSelectModule, MatInputModule, ReactiveFormsModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule],
@@ -24,17 +26,19 @@ export class CreatePopup implements OnInit {
   productOptions: string[] = [];
 
   createReportForm = new FormGroup({
-    reportName: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(255)]),
-    categories: new FormControl([], [Validators.required]),
+    title: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(255)]),
+    category: new FormControl([], [Validators.required]),
     regions: new FormControl([], [Validators.required]),
-    products: new FormControl([], [Validators.required]),
+    product: new FormControl([], [Validators.required]),
     dateRange: new FormGroup({
       start: new FormControl(null),
       end: new FormControl(null)
     }),
-    addProductId: new FormControl(false),
-    addSales: new FormControl(false)
+    includeId: new FormControl(false),
+    includeSalesData: new FormControl(false)
   });
+
+  constructor(private reportService: ReportService) { }
 
   ngOnInit(): void {
     this.populateFilters();
@@ -43,8 +47,8 @@ export class CreatePopup implements OnInit {
   createReport(): void {
     if (this.createReportForm.valid) {
       const formData = this.createReportForm.value;
-      console.log('Report form data:', formData);
-
+      let newReport: ReportItemDTO = this.mapFormToReportDTO(formData);
+      this.reportService.saveReportToLocalStorage(newReport);
       this.dialogRef.close(formData);
     } else {
       this.markAllControlsAsTouched(this.createReportForm);
@@ -59,6 +63,27 @@ export class CreatePopup implements OnInit {
     this.categoriesOptions = filterData.categories;
     this.regionOptions = filterData.regions;
     this.productOptions = filterData.products.map((product: { name: string; }) => product.name);
+  }
+
+  mapFormToReportDTO(formData: any): ReportDTO {
+    const reportDTO: ReportDTO = {
+      id: Date.now(),
+      title: formData.title,
+      creationDate: new Date().toISOString().split('T')[0],
+      creationTime: new Date().toTimeString().split(' ')[0].substring(0, 5),
+      author: 'Jaime Arturo Álvarez Orgaz', //Current user
+      product: formData.product,
+      category: formData.category,
+      region: formData.regions,
+      dateRange: {
+        start: formData.dateRange.start,
+        end: formData.dateRange.end
+      },
+      includeId: formData.includeId,
+      includeSalesData: formData.includeSalesData
+    };
+
+    return reportDTO;
   }
 
   private markAllControlsAsTouched(formGroup: FormGroup | FormArray): void {
