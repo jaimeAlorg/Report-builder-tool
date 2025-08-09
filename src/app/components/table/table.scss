@@ -28,8 +28,8 @@
   min-width: 600px;
 
   .table-header {
-    color: var(--mat-sys-on-primary-container);
-    font-weight: bold;
+    color: var(--mat-sys-primary);
+    font-weight: bold !important;
     white-space: nowrap;
   }
 

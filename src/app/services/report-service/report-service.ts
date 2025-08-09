@@ -71,8 +71,8 @@ export class ReportService {
     }
 
     const reports = reportData.map(report => {
-      const { id, title, creationDate, creationTime, author, products, category, region, includeId, includeSalesData, dateRange } = report;
-      return { id, title, creationDate, creationTime, author, products, category, region, includeId, includeSalesData, dateRange };
+      const { id, title, creationDate, creationTime, author, product, category, region, includeId, includeSalesData, dateRange } = report;
+      return { id, title, creationDate, creationTime, author, product, category, region, includeId, includeSalesData, dateRange };
     });
     localStorage.setItem('savedReports', JSON.stringify(reports));
   }

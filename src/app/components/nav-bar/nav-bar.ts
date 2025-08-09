@@ -16,8 +16,12 @@ export class NavBar implements OnInit, OnDestroy {
 
   private routerSubscription: Subscription = new Subscription();
   isMobileMenuOpen: boolean = false;
+  isHighContrast: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.isHighContrast = localStorage.getItem('high-contrast') === 'true';
+    this.applyTheme();
+  }
 
   ngOnInit() {
     this.routerSubscription = this.router.events.subscribe(event => {
@@ -33,6 +37,20 @@ export class NavBar implements OnInit, OnDestroy {
 
   toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  toggleTheme() {
+    this.isHighContrast = !this.isHighContrast;
+    localStorage.setItem('high-contrast', this.isHighContrast.toString());
+    this.applyTheme();
+  }
+
+  applyTheme() {
+    if (this.isHighContrast) {
+      document.documentElement.classList.add('high-contrast-theme');
+    } else {
+      document.documentElement.classList.remove('high-contrast-theme');
+    }
   }
 
   openCreatePopup() {

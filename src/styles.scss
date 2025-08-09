@@ -12,7 +12,12 @@ html {
       density: 0,
     )
   );
+
   @include my_theme.light-theme-overrides();
+
+  &.high-contrast-theme {
+    @include my_theme.light-high-contrast-overrides();
+  }
 }
 
 body {

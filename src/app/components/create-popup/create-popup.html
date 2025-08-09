@@ -10,11 +10,11 @@
               placeholder="Enter report title"
               formControlName="title"
             />
-            @if (createReportForm.get('title')?.hasError('required') && createReportForm.get('title')?.touched) {
-              <mat-error>Report title is required</mat-error>
-            }
-            @if (createReportForm.get('title')?.hasError('titleExists')) {
-              <mat-error>A report with this title already exists</mat-error>
+            @if (createReportForm.get('title')?.hasError('required') &&
+            createReportForm.get('title')?.touched) {
+            <mat-error>Report title is required</mat-error>
+            } @if (createReportForm.get('title')?.hasError('titleExists')) {
+            <mat-error>A report with this title already exists</mat-error>
             }
           </mat-form-field>
         </div>

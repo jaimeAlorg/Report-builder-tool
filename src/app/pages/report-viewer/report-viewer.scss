@@ -11,12 +11,13 @@
 .report-list-container {
   display: flex;
   flex-direction: column;
-  outline: auto;
   width: 40%;
   height: 100vh;
   padding: tokens.spacing(xxl);
   box-sizing: border-box;
   overflow: hidden;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 
   app-report-list-card {
     flex: 1;
@@ -28,18 +29,18 @@
 .report-view-container {
   display: flex;
   flex-direction: column;
-  outline: auto;
   width: 60%;
   padding: tokens.spacing(xxl);
   background-color: var(--mat-sys-surface-container-lowest);
   gap: tokens.spacing(lg);
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 
   .mobile-actions-container {
     display: flex;
     justify-content: space-between;
     gap: tokens.spacing(sm);
-    margin-bottom: tokens.spacing(md);
   }
 
   .report-view-header {
@@ -56,7 +57,7 @@
 
       .report-title {
         font: var(--mat-sys-headline-medium);
-        color: var(--mat-sys-on-primary-container);
+        color: var(--mat-sys-primary);
         margin: 0;
         font-weight: 500;
       }
@@ -73,7 +74,7 @@
         color: var(--mat-sys-surface-tint);
         margin: 0;
         margin-right: tokens.spacing(xs);
-        font-weight: 500;
+        font-weight: 600;
       }
 
       .info-value {
@@ -121,7 +122,7 @@
           color: var(--mat-sys-on-surface-variant);
           margin: 0;
           margin-right: tokens.spacing(xs);
-          font-weight: 500;
+          font-weight: 600;
           flex-shrink: 0;
         }
 
@@ -199,18 +200,20 @@
 @media (max-width: 1000px) {
   .report-viewer-container {
     flex-direction: column;
-    width: 100%;
+    width: 100vw;
     max-width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
     overflow: hidden;
-    height: 100%;
+    padding-top: tokens.nav-dimension(mobile-height);
+    box-sizing: border-box;
   }
 
   .report-list-container {
     width: 100%;
     max-width: 100%;
-    height: 100%;
+    height: calc(100vh - 60px);
     padding: tokens.spacing(lg);
-    box-sizing: border-box;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -229,10 +232,9 @@
   .report-view-container {
     width: 100%;
     max-width: 100%;
-    height: 100%;
+    height: calc(100vh - 60px);
     display: none;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden; // No scrolling
     padding: tokens.spacing(lg);
     box-sizing: border-box;
 
@@ -265,7 +267,6 @@
       width: 100%;
       box-sizing: border-box;
       overflow-x: auto;
-
       .table-subtitle {
         font: var(--mat-sys-title-medium);
       }
@@ -279,7 +280,7 @@
             }
 
             .mat-mdc-cell {
-              font: var(--mat-sys-label-medium);
+              font: var(--mat-sys-label-large);
               padding: tokens.spacing(xs) tokens.spacing(sm);
             }
 
