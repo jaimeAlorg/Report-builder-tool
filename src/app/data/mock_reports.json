@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Furniture Report - Australia Q3",
+    "title": "Carlos report - July",
     "creationDate": "2025-08-08",
     "creationTime": "21:20",
     "author": "Carlos Mendoza",
@@ -24,19 +24,19 @@
   },
   {
     "id": 2,
-    "title": "Top Products in Africa - July",
+    "title": "Emily's report - Electronics Asia",
     "creationDate": "2025-07-08",
     "creationTime": "10:44",
     "author": "Emily Zhang",
     "product": ["Smartphone", "Laptop"],
     "category": ["Electronics"],
-    "region": ["Asia", "Europe"],
+    "region": ["Asia"],
     "includeId": false,
     "includeSalesData": false
   },
   {
     "id": 3,
-    "title": "Appliance Sales Summary - Europe",
+    "title": "Liam's report - All regions",
     "creationDate": "2025-08-09",
     "creationTime": "13:44",
     "author": "Liam O'Connor",
