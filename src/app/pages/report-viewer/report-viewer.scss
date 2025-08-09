@@ -41,7 +41,6 @@
     display: flex;
     justify-content: space-between;
     gap: tokens.spacing(sm);
-    margin-bottom: tokens.spacing(md);
   }
 
   .report-view-header {
@@ -201,19 +200,20 @@
 @media (max-width: 1000px) {
   .report-viewer-container {
     flex-direction: column;
-    width: 100%;
+    width: 100vw;
     max-width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
     overflow: hidden;
-    height: 100%;
     padding-top: tokens.nav-dimension(mobile-height);
+    box-sizing: border-box;
   }
 
   .report-list-container {
     width: 100%;
     max-width: 100%;
-    height: 100%;
+    height: calc(100vh - 60px);
     padding: tokens.spacing(lg);
-    box-sizing: border-box;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -232,10 +232,9 @@
   .report-view-container {
     width: 100%;
     max-width: 100%;
-    height: 100%;
+    height: calc(100vh - 60px);
     display: none;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden; // No scrolling
     padding: tokens.spacing(lg);
     box-sizing: border-box;
 
@@ -268,7 +267,6 @@
       width: 100%;
       box-sizing: border-box;
       overflow-x: auto;
-
       .table-subtitle {
         font: var(--mat-sys-title-medium);
       }
@@ -282,7 +280,7 @@
             }
 
             .mat-mdc-cell {
-              font: var(--mat-sys-label-medium);
+              font: var(--mat-sys-label-large);
               padding: tokens.spacing(xs) tokens.spacing(sm);
             }
 

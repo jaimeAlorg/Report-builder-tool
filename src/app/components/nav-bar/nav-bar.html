@@ -18,6 +18,14 @@
       </a>
     </div>
     <div class="nav-bar-bottom">
+      <a class="nav-bar-item" (click)="toggleTheme()">
+        <mat-icon
+          [fontIcon]="isHighContrast ? 'contrast' : 'brightness_6'"
+        ></mat-icon>
+        <span>{{
+          isHighContrast ? "High contrast" : "Standard contrast"
+        }}</span>
+      </a>
       <a class="nav-bar-item">
         <mat-icon fontIcon="help"></mat-icon>
         <span>Help</span>
@@ -68,6 +76,18 @@
       </a>
     </div>
     <div class="mobile-items-bottom">
+      <a
+        class="mobile-menu-item"
+        (click)="toggleTheme()"
+        title="Toggle contrast mode"
+      >
+        <mat-icon
+          [fontIcon]="isHighContrast ? 'contrast' : 'brightness_6'"
+        ></mat-icon>
+        <span>{{
+          isHighContrast ? "High contrast" : "Standard contrast"
+        }}</span>
+      </a>
       <a class="mobile-menu-item">
         <mat-icon fontIcon="logout"></mat-icon>
         <span>Logout</span>

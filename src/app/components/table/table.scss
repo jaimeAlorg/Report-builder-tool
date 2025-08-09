@@ -29,7 +29,7 @@
 
   .table-header {
     color: var(--mat-sys-primary);
-    font-weight: bold;
+    font-weight: bold !important;
     white-space: nowrap;
   }
 
