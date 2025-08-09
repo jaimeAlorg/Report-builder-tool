@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Table } from '../../components/table/table';
 import { ReportService } from '../../services/report-service/report-service';
-import { reportDTO } from '../../models/report-dtos';
+import { ReportDTO } from '../../models/report-dtos';
 
 @Component({
   selector: 'app-report-viewer',
@@ -15,7 +15,7 @@ import { reportDTO } from '../../models/report-dtos';
   styleUrl: './report-viewer.scss'
 })
 export class ReportViewer implements OnInit {
-  reportData: reportDTO | null = null;
+  reportData: ReportDTO | null = null;
   activeFilters: { label: string; value: string }[] = [];
   selectedReportId: number | null = null;
   isMobile: boolean = false;
@@ -25,6 +25,7 @@ export class ReportViewer implements OnInit {
   constructor(private reportService: ReportService) { }
 
   ngOnInit() {
+    this.reportService.buildMockReportsInLocalStorage();
     this.checkMobile();
   }
 
@@ -61,10 +62,10 @@ export class ReportViewer implements OnInit {
 
     if (!this.reportData) return;
 
-    if (this.reportData.products) {
+    if (this.reportData.product) {
       this.activeFilters.push({
         label: 'Products',
-        value: this.reportData.products.join(', ')
+        value: this.reportData.product.join(', ')
       });
     }
 

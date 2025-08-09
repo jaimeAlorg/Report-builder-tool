@@ -1,10 +1,11 @@
 import { CommonModule, formatDate } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnDestroy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { ReportService } from '../../services/report-service/report-service';
-import { reportItemDTO } from '../../models/report-dtos';
+import { ReportItemDTO } from '../../models/report-dtos';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-report-list-card',
@@ -12,17 +13,33 @@ import { reportItemDTO } from '../../models/report-dtos';
   templateUrl: './report-list-card.html',
   styleUrl: './report-list-card.scss'
 })
-export class ReportListCard implements OnInit {
+export class ReportListCard implements OnInit, OnDestroy {
   @Output() reportSelected: EventEmitter<number | null> = new EventEmitter<number | null>();
   @Input() isMobileView: boolean = false;
-  reportList: reportItemDTO[] = [];
-  selectedReport: reportItemDTO | null = null;
+  reportList: ReportItemDTO[] = [];
+  selectedReport: ReportItemDTO | null = null;
+  private reportCreatedSubscription: Subscription = new Subscription();
 
   constructor(private reportService: ReportService) { }
 
   ngOnInit(): void {
     this.getReportList();
     this.orderReportsByDateAndTime();
+
+    this.reportCreatedSubscription = this.reportService.reportCreated$.subscribe((reportItem) => {
+      this.getReportList();
+      this.orderReportsByDateAndTime();
+
+      // Select the newly created report from the list since report item outside the DOM
+      const newReport = this.reportList.find(r => r.id === reportItem.id);
+      if (newReport) {
+        this.onReportClick(newReport);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.reportCreatedSubscription.unsubscribe();
   }
 
   ngOnChanges(): void {
@@ -56,9 +73,12 @@ export class ReportListCard implements OnInit {
     });
   }
 
-  onReportClick(report: reportItemDTO): void {
-    if (this.selectedReport === report && report.selected) {
-      report.selected = !report.selected;
+  onReportClick(report: ReportItemDTO): void {
+    const currentSelectedId = this.selectedReport?.id;
+
+    if (currentSelectedId === report.id && report.selected) {
+      report.selected = false;
+      this.selectedReport = null;
       this.reportSelected.emit(null);
     } else {
       this.reportList.forEach(r => r.selected = false);

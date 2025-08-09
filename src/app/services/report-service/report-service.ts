@@ -1,46 +1,57 @@
 import { Injectable } from '@angular/core';
 import reportData from '../../data/mock_reports.json';
 import salesData from '../../data/mock_sales_data.json';
-import { reportItemDTO, reportDTO } from '../../models/report-dtos';
-import { Observable } from 'rxjs';
+import { ReportItemDTO, ReportDTO } from '../../models/report-dtos';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReportService {
+  private reportCreatedSubject = new Subject<ReportItemDTO>();
+  public reportCreated$ = this.reportCreatedSubject.asObservable();
 
   constructor() { }
 
-  getReportList(): Observable<reportItemDTO[]> {
-    let reportList: reportItemDTO[] = [];
+  getReportList(): Observable<ReportItemDTO[]> {
+    const savedReports = localStorage.getItem('savedReports');
+    let reportList: ReportItemDTO[] = [];
 
-    return new Observable<reportItemDTO[]>(observer => {
-      reportData.forEach((report: any) => {
-        let reportItem: reportItemDTO = {
-          id: report.id,
-          title: report.title,
-          creationDate: report.creationDate,
-          creationTime: report.creationTime,
-          author: report.author,
-        }
-        reportList.push(reportItem);
+    if (savedReports) {
+      return new Observable<ReportItemDTO[]>(observer => {
+        JSON.parse(savedReports).forEach((report: any) => {
+          let reportItem: ReportItemDTO = {
+            id: report.id,
+            title: report.title,
+            creationDate: report.creationDate,
+            creationTime: report.creationTime,
+            author: report.author,
+          };
+          reportList.push(reportItem);
+        });
+        observer.next(reportList);
+        observer.complete();
       });
-      observer.next(reportList);
-      observer.complete();
-    });
+    } else {
+      return new Observable<ReportItemDTO[]>(observer => {
+        observer.next([]);
+        observer.complete();
+      });
+    }
   }
 
-  getReportData(reportId: number): Observable<reportDTO> | null {
-    const report = reportData.find((report: any) => report.id === reportId);
+  getReportData(reportId: number): Observable<ReportDTO> | null {
+    const savedReports = localStorage.getItem('savedReports');
+    const report = savedReports ? JSON.parse(savedReports).find((report: any) => report.id === reportId) : null;
     if (report) {
-      return new Observable<reportDTO>(observer => {
+      return new Observable<ReportDTO>(observer => {
         observer.next({
           id: report.id,
           title: report.title,
           creationDate: report.creationDate,
           creationTime: report.creationTime,
           author: report.author,
-          products: report.products || [],
+          product: report.product || [],
           category: report.category || [],
           region: report.region || [],
           dateRange: (report.dateRange?.start && report.dateRange?.end) ? { start: report.dateRange.start, end: report.dateRange.end } : undefined,
@@ -53,7 +64,20 @@ export class ReportService {
     return null;
   }
 
-  buildTableData(reportDTO: reportDTO | null): Observable<any[]> {
+
+  buildMockReportsInLocalStorage(): void {
+    if (localStorage.getItem('savedReports')) {
+      return;
+    }
+
+    const reports = reportData.map(report => {
+      const { id, title, creationDate, creationTime, author, products, category, region, includeId, includeSalesData, dateRange } = report;
+      return { id, title, creationDate, creationTime, author, products, category, region, includeId, includeSalesData, dateRange };
+    });
+    localStorage.setItem('savedReports', JSON.stringify(reports));
+  }
+
+  buildTableData(reportDTO: ReportDTO | null): Observable<any[]> {
     return new Observable<any[]>(observer => {
       if (!reportDTO) {
         observer.next([]);
@@ -73,8 +97,8 @@ export class ReportService {
       }
 
       data = data.filter(item => {
-        const productMatch = !reportDTO.products.length ||
-          reportDTO.products.some(p => p.toLowerCase() === item.product.toLowerCase());
+        const productMatch = !reportDTO.product.length ||
+          reportDTO.product.some(p => p.toLowerCase() === item.product.toLowerCase());
 
         const categoryMatch = !reportDTO.category.length ||
           reportDTO.category.some(c => c.toLowerCase() === item.category.toLowerCase());
@@ -112,6 +136,19 @@ export class ReportService {
     });
   }
 
-  saveReport(reportData: any) { }
+  saveReportToLocalStorage(report: ReportItemDTO) {
+    const savedReports = localStorage.getItem('savedReports');
+    const reportsArray = savedReports ? JSON.parse(savedReports) : [];
+    reportsArray.push(report);
+    localStorage.setItem('savedReports', JSON.stringify(reportsArray));
 
+    this.reportCreatedSubject.next(report);
+  }
+
+  generateReportId(): number {
+    const savedReports = localStorage.getItem('savedReports');
+    const reportsArray = savedReports ? JSON.parse(savedReports) : [];
+    const maxId = Math.max(0, ...reportsArray.map((r: any) => r.id || 0));
+    return maxId + 1;
+  }
 }

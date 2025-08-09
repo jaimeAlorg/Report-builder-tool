@@ -1,4 +1,4 @@
-export interface reportItemDTO {
+export interface ReportItemDTO {
     id: number;
     title: string;
     creationDate: string;
@@ -7,13 +7,13 @@ export interface reportItemDTO {
     selected?: boolean;
 }
 
-export interface reportDTO {
+export interface ReportDTO {
     id: number;
     title: string;
     creationDate: string;
     creationTime: string;
     author: string;
-    products: string[];
+    product: string[];
     category: string[];
     region: string[];
     dateRange?: { start: string; end: string };

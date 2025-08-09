@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Dialog } from "../dialog/dialog";
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -10,9 +10,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import filterData from '../../data/mock_filters.json';
+import { ReportService } from '../../services/report-service/report-service';
+import { ReportDTO, ReportItemDTO } from '../../models/report-dtos';
+import { SelectAllDirective } from '../../directives/select-all-directive';
 @Component({
   selector: 'app-create-popup',
-  imports: [Dialog, MatFormFieldModule, MatSelectModule, MatInputModule, ReactiveFormsModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule],
+  imports: [Dialog, MatFormFieldModule, MatSelectModule, MatInputModule, ReactiveFormsModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, SelectAllDirective],
   providers: [provideNativeDateAdapter()],
   templateUrl: './create-popup.html',
   styleUrl: './create-popup.scss'
@@ -24,17 +27,24 @@ export class CreatePopup implements OnInit {
   productOptions: string[] = [];
 
   createReportForm = new FormGroup({
-    reportName: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(255)]),
-    categories: new FormControl([], [Validators.required]),
+    title: new FormControl('', [
+      Validators.required,
+      Validators.minLength(1),
+      Validators.maxLength(255),
+      this.titleValidator.bind(this)
+    ]),
+    category: new FormControl([], [Validators.required]),
     regions: new FormControl([], [Validators.required]),
-    products: new FormControl([], [Validators.required]),
+    product: new FormControl([], [Validators.required]),
     dateRange: new FormGroup({
       start: new FormControl(null),
       end: new FormControl(null)
     }),
-    addProductId: new FormControl(false),
-    addSales: new FormControl(false)
+    includeId: new FormControl(false),
+    includeSalesData: new FormControl(false)
   });
+
+  constructor(private reportService: ReportService) { }
 
   ngOnInit(): void {
     this.populateFilters();
@@ -43,8 +53,8 @@ export class CreatePopup implements OnInit {
   createReport(): void {
     if (this.createReportForm.valid) {
       const formData = this.createReportForm.value;
-      console.log('Report form data:', formData);
-
+      let newReport: ReportItemDTO = this.mapFormToReportDTO(formData);
+      this.reportService.saveReportToLocalStorage(newReport);
       this.dialogRef.close(formData);
     } else {
       this.markAllControlsAsTouched(this.createReportForm);
@@ -61,6 +71,27 @@ export class CreatePopup implements OnInit {
     this.productOptions = filterData.products.map((product: { name: string; }) => product.name);
   }
 
+  mapFormToReportDTO(formData: any): ReportDTO {
+    const reportDTO: ReportDTO = {
+      id: this.reportService.generateReportId(),
+      title: formData.title,
+      creationDate: new Date().toISOString().split('T')[0],
+      creationTime: new Date().toTimeString().split(' ')[0].substring(0, 5),
+      author: 'Jaime Arturo Álvarez Orgaz', //Current user
+      product: formData.product,
+      category: formData.category,
+      region: formData.regions,
+      dateRange: {
+        start: formData.dateRange.start ? new Date(formData.dateRange.start).toISOString().split('T')[0] : '',
+        end: formData.dateRange.end ? new Date(formData.dateRange.end).toISOString().split('T')[0] : ''
+      },
+      includeId: formData.includeId,
+      includeSalesData: formData.includeSalesData
+    };
+
+    return reportDTO;
+  }
+
   private markAllControlsAsTouched(formGroup: FormGroup | FormArray): void {
     Object.values(formGroup.controls).forEach(control => {
       if (control instanceof FormGroup || control instanceof FormArray) {
@@ -70,5 +101,23 @@ export class CreatePopup implements OnInit {
         control.updateValueAndValidity();
       }
     });
+  }
+
+  private titleValidator(control: AbstractControl): ValidationErrors | null {
+    if (!control.value || control.value.trim() === '') {
+      return null;
+    }
+
+    const savedReports = localStorage.getItem('savedReports');
+    if (!savedReports) {
+      return null;
+    }
+
+    const reports = JSON.parse(savedReports);
+    const titleExists = reports.some((report: any) =>
+      report.title.toLowerCase().trim() === control.value.toLowerCase().trim()
+    );
+
+    return titleExists ? { titleExists: { value: control.value } } : null;
   }
 }

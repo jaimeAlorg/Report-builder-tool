@@ -3,14 +3,19 @@
     <ng-content dialog-body>
       <form [formGroup]="createReportForm" class="form-container">
         <div class="filter-container">
-          <mat-label class="field-label">Report name</mat-label>
+          <mat-label class="field-label">Report title</mat-label>
           <mat-form-field appearance="outline" class="custom-form-field">
             <input
               matInput
-              placeholder="Enter report name"
-              formControlName="reportName"
+              placeholder="Enter report title"
+              formControlName="title"
             />
-            <mat-error> Report name is required </mat-error>
+            @if (createReportForm.get('title')?.hasError('required') && createReportForm.get('title')?.touched) {
+              <mat-error>Report title is required</mat-error>
+            }
+            @if (createReportForm.get('title')?.hasError('titleExists')) {
+              <mat-error>A report with this title already exists</mat-error>
+            }
           </mat-form-field>
         </div>
         <div class="filter-container">
@@ -19,8 +24,14 @@
             <mat-select
               multiple
               placeholder="Select categories"
-              formControlName="categories"
+              formControlName="category"
             >
+              <mat-option
+                value="select-all"
+                selectAll
+                [allValues]="categoriesOptions"
+                >Select all</mat-option
+              >
               @for (category of categoriesOptions; track category) {
               <mat-option [value]="category">{{ category }}</mat-option>
               }
@@ -36,6 +47,12 @@
               placeholder="Select regions"
               formControlName="regions"
             >
+              <mat-option
+                value="select-all"
+                selectAll
+                [allValues]="regionOptions"
+                >Select all</mat-option
+              >
               @for (region of regionOptions; track region) {
               <mat-option [value]="region">{{ region }}</mat-option>
               }
@@ -49,8 +66,14 @@
             <mat-select
               multiple
               placeholder="Select products"
-              formControlName="products"
+              formControlName="product"
             >
+              <mat-option
+                value="select-all"
+                selectAll
+                [allValues]="productOptions"
+                >Select all</mat-option
+              >
               @for (product of productOptions; track product) {
               <mat-option [value]="product">{{ product }}</mat-option>
               }
@@ -82,16 +105,16 @@
           <div class="checkbox-row">
             <mat-checkbox
               class="product-checkbox"
-              formControlName="addProductId"
+              formControlName="includeId"
             ></mat-checkbox>
-            <mat-label class="field-label">Add product id</mat-label>
+            <mat-label class="field-label">Include product id</mat-label>
           </div>
           <div class="checkbox-row">
             <mat-checkbox
               class="product-checkbox"
-              formControlName="addSales"
+              formControlName="includeSalesData"
             ></mat-checkbox>
-            <mat-label class="field-label">Add product sales</mat-label>
+            <mat-label class="field-label">Include product sales</mat-label>
           </div>
         </div>
       </form>
