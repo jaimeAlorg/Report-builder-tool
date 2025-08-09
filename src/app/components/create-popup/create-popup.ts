@@ -18,7 +18,7 @@ import filterData from '../../data/mock_filters.json';
   styleUrl: './create-popup.scss'
 })
 export class CreatePopup implements OnInit {
-  private dialogRef = inject(MatDialogRef<Dialog>)
+  private dialogRef = inject(MatDialogRef<CreatePopup>)
   categoriesOptions: string[] = [];
   regionOptions: string[] = [];
   productOptions: string[] = [];

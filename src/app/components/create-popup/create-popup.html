@@ -21,7 +21,7 @@
               placeholder="Select categories"
               formControlName="categories"
             >
-              @for (category of categoriesOptions; track $index) {
+              @for (category of categoriesOptions; track category) {
               <mat-option [value]="category">{{ category }}</mat-option>
               }
             </mat-select>
@@ -36,7 +36,7 @@
               placeholder="Select regions"
               formControlName="regions"
             >
-              @for (region of regionOptions; track $index) {
+              @for (region of regionOptions; track region) {
               <mat-option [value]="region">{{ region }}</mat-option>
               }
             </mat-select>
@@ -51,7 +51,7 @@
               placeholder="Select products"
               formControlName="products"
             >
-              @for (product of productOptions; track $index) {
+              @for (product of productOptions; track product) {
               <mat-option [value]="product">{{ product }}</mat-option>
               }
             </mat-select>
