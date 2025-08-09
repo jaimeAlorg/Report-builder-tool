@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import reportData from '../../data/mock_reports.json';
 import salesData from '../../data/mock_sales_data.json';
 import { ReportItemDTO, ReportDTO } from '../../models/report-dtos';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReportService {
+  private reportCreatedSubject = new Subject<ReportItemDTO>();
+  public reportCreated$ = this.reportCreatedSubject.asObservable();
 
   constructor() { }
 
@@ -49,7 +51,7 @@ export class ReportService {
           creationDate: report.creationDate,
           creationTime: report.creationTime,
           author: report.author,
-          product: report.products || [],
+          product: report.product || [],
           category: report.category || [],
           region: report.region || [],
           dateRange: (report.dateRange?.start && report.dateRange?.end) ? { start: report.dateRange.start, end: report.dateRange.end } : undefined,
@@ -139,5 +141,7 @@ export class ReportService {
     const reportsArray = savedReports ? JSON.parse(savedReports) : [];
     reportsArray.push(report);
     localStorage.setItem('savedReports', JSON.stringify(reportsArray));
+
+    this.reportCreatedSubject.next(report);
   }
 }
