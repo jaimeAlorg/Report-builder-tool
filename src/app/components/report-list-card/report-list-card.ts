@@ -29,7 +29,12 @@ export class ReportListCard implements OnInit, OnDestroy {
     this.reportCreatedSubscription = this.reportService.reportCreated$.subscribe((reportItem) => {
       this.getReportList();
       this.orderReportsByDateAndTime();
-      this.onReportClick(reportItem);
+
+      // Select the newly created report from the list since report item outside the DOM
+      const newReport = this.reportList.find(r => r.id === reportItem.id);
+      if (newReport) {
+        this.onReportClick(newReport);
+      }
     });
   }
 
@@ -69,8 +74,11 @@ export class ReportListCard implements OnInit, OnDestroy {
   }
 
   onReportClick(report: ReportItemDTO): void {
-    if (this.selectedReport === report && report.selected) {
-      report.selected = !report.selected;
+    const currentSelectedId = this.selectedReport?.id;
+
+    if (currentSelectedId === report.id && report.selected) {
+      report.selected = false;
+      this.selectedReport = null;
       this.reportSelected.emit(null);
     } else {
       this.reportList.forEach(r => r.selected = false);

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Dialog } from "../dialog/dialog";
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -12,9 +12,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 import filterData from '../../data/mock_filters.json';
 import { ReportService } from '../../services/report-service/report-service';
 import { ReportDTO, ReportItemDTO } from '../../models/report-dtos';
+import { SelectAllDirective } from '../../directives/select-all-directive';
 @Component({
   selector: 'app-create-popup',
-  imports: [Dialog, MatFormFieldModule, MatSelectModule, MatInputModule, ReactiveFormsModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule],
+  imports: [Dialog, MatFormFieldModule, MatSelectModule, MatInputModule, ReactiveFormsModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, SelectAllDirective],
   providers: [provideNativeDateAdapter()],
   templateUrl: './create-popup.html',
   styleUrl: './create-popup.scss'
@@ -26,7 +27,12 @@ export class CreatePopup implements OnInit {
   productOptions: string[] = [];
 
   createReportForm = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(255)]),
+    title: new FormControl('', [
+      Validators.required,
+      Validators.minLength(1),
+      Validators.maxLength(255),
+      this.titleValidator.bind(this)
+    ]),
     category: new FormControl([], [Validators.required]),
     regions: new FormControl([], [Validators.required]),
     product: new FormControl([], [Validators.required]),
@@ -67,7 +73,7 @@ export class CreatePopup implements OnInit {
 
   mapFormToReportDTO(formData: any): ReportDTO {
     const reportDTO: ReportDTO = {
-      id: Date.now(),
+      id: this.reportService.generateReportId(),
       title: formData.title,
       creationDate: new Date().toISOString().split('T')[0],
       creationTime: new Date().toTimeString().split(' ')[0].substring(0, 5),
@@ -76,8 +82,8 @@ export class CreatePopup implements OnInit {
       category: formData.category,
       region: formData.regions,
       dateRange: {
-        start: formData.dateRange.start,
-        end: formData.dateRange.end
+        start: formData.dateRange.start ? new Date(formData.dateRange.start).toISOString().split('T')[0] : '',
+        end: formData.dateRange.end ? new Date(formData.dateRange.end).toISOString().split('T')[0] : ''
       },
       includeId: formData.includeId,
       includeSalesData: formData.includeSalesData
@@ -95,5 +101,23 @@ export class CreatePopup implements OnInit {
         control.updateValueAndValidity();
       }
     });
+  }
+
+  private titleValidator(control: AbstractControl): ValidationErrors | null {
+    if (!control.value || control.value.trim() === '') {
+      return null;
+    }
+
+    const savedReports = localStorage.getItem('savedReports');
+    if (!savedReports) {
+      return null;
+    }
+
+    const reports = JSON.parse(savedReports);
+    const titleExists = reports.some((report: any) =>
+      report.title.toLowerCase().trim() === control.value.toLowerCase().trim()
+    );
+
+    return titleExists ? { titleExists: { value: control.value } } : null;
   }
 }

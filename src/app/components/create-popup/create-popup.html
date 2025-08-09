@@ -10,7 +10,12 @@
               placeholder="Enter report title"
               formControlName="title"
             />
-            <mat-error> Report title is required </mat-error>
+            @if (createReportForm.get('title')?.hasError('required') && createReportForm.get('title')?.touched) {
+              <mat-error>Report title is required</mat-error>
+            }
+            @if (createReportForm.get('title')?.hasError('titleExists')) {
+              <mat-error>A report with this title already exists</mat-error>
+            }
           </mat-form-field>
         </div>
         <div class="filter-container">
@@ -21,6 +26,12 @@
               placeholder="Select categories"
               formControlName="category"
             >
+              <mat-option
+                value="select-all"
+                selectAll
+                [allValues]="categoriesOptions"
+                >Select all</mat-option
+              >
               @for (category of categoriesOptions; track category) {
               <mat-option [value]="category">{{ category }}</mat-option>
               }
@@ -36,6 +47,12 @@
               placeholder="Select regions"
               formControlName="regions"
             >
+              <mat-option
+                value="select-all"
+                selectAll
+                [allValues]="regionOptions"
+                >Select all</mat-option
+              >
               @for (region of regionOptions; track region) {
               <mat-option [value]="region">{{ region }}</mat-option>
               }
@@ -51,6 +68,12 @@
               placeholder="Select products"
               formControlName="product"
             >
+              <mat-option
+                value="select-all"
+                selectAll
+                [allValues]="productOptions"
+                >Select all</mat-option
+              >
               @for (product of productOptions; track product) {
               <mat-option [value]="product">{{ product }}</mat-option>
               }

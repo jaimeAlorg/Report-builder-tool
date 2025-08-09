@@ -144,4 +144,11 @@ export class ReportService {
 
     this.reportCreatedSubject.next(report);
   }
+
+  generateReportId(): number {
+    const savedReports = localStorage.getItem('savedReports');
+    const reportsArray = savedReports ? JSON.parse(savedReports) : [];
+    const maxId = reportsArray[reportsArray.length - 1]?.id || 0;
+    return maxId + 1;
+  }
 }
