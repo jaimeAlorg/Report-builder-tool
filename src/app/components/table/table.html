@@ -1,9 +1,8 @@
 <div class="table-container">
+  @if (dataSource.length > 0) {
   <mat-table [dataSource]="dataSource" class="mat-table mat-elevation-z8">
-    <ng-container
-      *ngFor="let column of displayedColumns"
-      [matColumnDef]="column"
-    >
+    @for (column of displayedColumns; track column) {
+    <ng-container [matColumnDef]="column">
       <mat-header-cell class="table-header" *matHeaderCellDef>
         {{ column | titlecase }}
       </mat-header-cell>
@@ -11,7 +10,13 @@
         {{ element[column] }}
       </mat-cell>
     </ng-container>
+    }
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
+  } @else {
+  <div class="no-data-message">
+    <p>No data available for the selected filters</p>
+  </div>
+  }
 </div>

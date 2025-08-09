@@ -1,7 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { CreatePopup } from '../create-popup/create-popup';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,8 +12,12 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./nav-bar.scss']
 })
 export class NavBar implements OnInit, OnDestroy {
-  isMobileMenuOpen: boolean = false;
+  readonly dialog = inject(MatDialog);
+
   private routerSubscription: Subscription = new Subscription();
+  isMobileMenuOpen: boolean = false;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.routerSubscription = this.router.events.subscribe(event => {
@@ -29,6 +35,10 @@ export class NavBar implements OnInit, OnDestroy {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
-  constructor(private router: Router) { }
-
+  openCreatePopup() {
+    const dialogRef = this.dialog.open(CreatePopup, {
+      width: '500px',
+      data: {}
+    });
+  }
 }

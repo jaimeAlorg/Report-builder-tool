@@ -1,0 +1,21 @@
+{
+  "regions": [
+    "South America",
+    "Europe",
+    "North America",
+    "Africa",
+    "Asia",
+    "Australia"
+  ],
+  "categories": ["Electronics", "Appliances", "Stationery", "Furniture"],
+  "products": [
+    { "id": 1, "name": "Laptop" },
+    { "id": 2, "name": "Coffee Maker" },
+    { "id": 3, "name": "Notebook" },
+    { "id": 4, "name": "Desk Chair" },
+    { "id": 7, "name": "Smartphone" },
+    { "id": 8, "name": "Desk Lamp" },
+    { "id": 11, "name": "Headphones" },
+    { "id": 17, "name": "Monitor" }
+  ]
+}

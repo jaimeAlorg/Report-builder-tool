@@ -5,13 +5,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Table } from '../../components/table/table';
-import { ReportService } from '../../services/report-service';
-import { CommonModule } from '@angular/common';
+import { ReportService } from '../../services/report-service/report-service';
 import { reportDTO } from '../../models/report-dtos';
 
 @Component({
   selector: 'app-report-viewer',
-  imports: [ReportListCard, MatDivider, MatButtonModule, MatIconModule, MatTableModule, Table, CommonModule],
+  imports: [ReportListCard, MatDivider, MatButtonModule, MatIconModule, MatTableModule, Table],
   templateUrl: './report-viewer.html',
   styleUrl: './report-viewer.scss'
 })
@@ -21,7 +20,7 @@ export class ReportViewer implements OnInit {
   selectedReportId: number | null = null;
   isMobile: boolean = false;
 
-  MOBILE_BREAKPOINT: number = 768;
+  MOBILE_BREAKPOINT: number = 1000;
 
   constructor(private reportService: ReportService) { }
 
@@ -62,22 +61,32 @@ export class ReportViewer implements OnInit {
 
     if (!this.reportData) return;
 
-    const filterMappings = [
-      { key: 'products', label: 'Products' },
-      { key: 'category', label: 'Category' },
-      { key: 'region', label: 'Region' },
-      { key: 'salesRange', label: 'Sales range' },
-      { key: 'dateRange', label: 'Date range' }
-    ];
+    if (this.reportData.products) {
+      this.activeFilters.push({
+        label: 'Products',
+        value: this.reportData.products.join(', ')
+      });
+    }
 
-    filterMappings.forEach(filter => {
-      const value = this.reportData![filter.key as keyof reportDTO];
-      if (value) {
-        this.activeFilters.push({
-          label: filter.label,
-          value: value as string
-        });
-      }
-    });
+    if (this.reportData.category) {
+      this.activeFilters.push({
+        label: 'Category',
+        value: this.reportData.category.join(', ')
+      });
+    }
+
+    if (this.reportData.region) {
+      this.activeFilters.push({
+        label: 'Region',
+        value: this.reportData.region.join(', ')
+      });
+    }
+
+    if (this.reportData.dateRange) {
+      this.activeFilters.push({
+        label: 'Date range',
+        value: `${this.reportData.dateRange.start} | ${this.reportData.dateRange.end}`
+      });
+    }
   }
 }

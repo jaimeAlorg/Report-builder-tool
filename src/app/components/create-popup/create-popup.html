@@ -1,0 +1,114 @@
+<div class="create-container">
+  <app-dialog [dialogTitle]="'Create Report'">
+    <ng-content dialog-body>
+      <form [formGroup]="createReportForm" class="form-container">
+        <div class="filter-container">
+          <mat-label class="field-label">Report name</mat-label>
+          <mat-form-field appearance="outline" class="custom-form-field">
+            <input
+              matInput
+              placeholder="Enter report name"
+              formControlName="reportName"
+            />
+            <mat-error> Report name is required </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="filter-container">
+          <mat-label class="field-label">Category</mat-label>
+          <mat-form-field appearance="outline" class="custom-form-field">
+            <mat-select
+              multiple
+              placeholder="Select categories"
+              formControlName="categories"
+            >
+              @for (category of categoriesOptions; track category) {
+              <mat-option [value]="category">{{ category }}</mat-option>
+              }
+            </mat-select>
+            <mat-error> At least one category is required </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="filter-container">
+          <mat-label class="field-label">Region</mat-label>
+          <mat-form-field appearance="outline" class="custom-form-field">
+            <mat-select
+              multiple
+              placeholder="Select regions"
+              formControlName="regions"
+            >
+              @for (region of regionOptions; track region) {
+              <mat-option [value]="region">{{ region }}</mat-option>
+              }
+            </mat-select>
+            <mat-error> At least one region is required </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="filter-container">
+          <mat-label class="field-label">Product</mat-label>
+          <mat-form-field appearance="outline" class="custom-form-field">
+            <mat-select
+              multiple
+              placeholder="Select products"
+              formControlName="products"
+            >
+              @for (product of productOptions; track product) {
+              <mat-option [value]="product">{{ product }}</mat-option>
+              }
+            </mat-select>
+            <mat-error> At least one product is required </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="filter-container" formGroupName="dateRange">
+          <mat-label class="field-label">Date range</mat-label>
+          <mat-form-field appearance="outline" class="custom-form-field">
+            <mat-date-range-input [rangePicker]="picker">
+              <input
+                matStartDate
+                placeholder="Start date"
+                formControlName="start"
+              />
+              <input matEndDate placeholder="End date" formControlName="end" />
+            </mat-date-range-input>
+            <mat-hint class="mat-hint">DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+        </div>
+        <div class="checkbox-container">
+          <mat-label class="field-label">Selection panel</mat-label>
+          <div class="checkbox-row">
+            <mat-checkbox
+              class="product-checkbox"
+              formControlName="addProductId"
+            ></mat-checkbox>
+            <mat-label class="field-label">Add product id</mat-label>
+          </div>
+          <div class="checkbox-row">
+            <mat-checkbox
+              class="product-checkbox"
+              formControlName="addSales"
+            ></mat-checkbox>
+            <mat-label class="field-label">Add product sales</mat-label>
+          </div>
+        </div>
+      </form>
+    </ng-content>
+    <ng-content dialog-buttons>
+      <div class="button-container">
+        <button matButton="outlined" class="reset-button" (click)="resetForm()">
+          Reset
+        </button>
+        <button
+          matButton="filled"
+          class="submit-button"
+          (click)="createReport()"
+        >
+          Submit
+        </button>
+      </div>
+    </ng-content>
+  </app-dialog>
+</div>

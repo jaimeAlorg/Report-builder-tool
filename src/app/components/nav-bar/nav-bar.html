@@ -4,13 +4,17 @@
       <div class="nav-bar-logo">
         <img src="arcticons--goblin-tools.svg" alt="Logo" />
       </div>
-      <a class="nav-bar-item">
+      <a class="nav-bar-item" (click)="openCreatePopup()">
         <mat-icon fontIcon="add"></mat-icon>
         <span>Generate report</span>
       </a>
       <a class="nav-bar-item" [routerLink]="['/reports']">
         <mat-icon fontIcon="article"></mat-icon>
         <span>Report viewer</span>
+      </a>
+      <a class="nav-bar-item">
+        <mat-icon fontIcon="edit_outline"></mat-icon>
+        <span>My reports</span>
       </a>
     </div>
     <div class="nav-bar-bottom">
@@ -42,24 +46,32 @@
         <mat-icon fontIcon="help"></mat-icon>
         <span>Help</span>
       </a>
-      <a class="mobile-nav-item">
-        <mat-icon fontIcon="logout"></mat-icon>
-        <span>Logout</span>
+      <a class="mobile-nav-item" (click)="openCreatePopup()">
+        <mat-icon fontIcon="add"></mat-icon>
+        <span>Generate report</span>
       </a>
     </div>
   </div>
   <div class="mobile-side-menu" [class.open]="isMobileMenuOpen">
-    <a class="mobile-menu-item">
-      <mat-icon fontIcon="add"></mat-icon>
-      <span>Generate report</span>
-    </a>
-    <a class="mobile-menu-item" [routerLink]="['/reports']">
-      <mat-icon fontIcon="article"></mat-icon>
-      <span>Report viewer</span>
-    </a>
-    <a class="mobile-menu-item">
-      <mat-icon fontIcon="account_circle"></mat-icon>
-      <span>Account</span>
-    </a>
+    <div class="mobile-items-top">
+      <a class="mobile-menu-item" [routerLink]="['/reports']">
+        <mat-icon fontIcon="article"></mat-icon>
+        <span>Report viewer</span>
+      </a>
+      <a class="mobile-menu-item">
+        <mat-icon fontIcon="edit_outline"></mat-icon>
+        <span>My reports</span>
+      </a>
+      <a class="mobile-menu-item">
+        <mat-icon fontIcon="account_circle"></mat-icon>
+        <span>Account</span>
+      </a>
+    </div>
+    <div class="mobile-items-bottom">
+      <a class="mobile-menu-item">
+        <mat-icon fontIcon="logout"></mat-icon>
+        <span>Logout</span>
+      </a>
+    </div>
   </div>
 </div>

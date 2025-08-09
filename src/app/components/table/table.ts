@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { ReportService } from '../../services/report-service';
+import { ReportService } from '../../services/report-service/report-service';
 import { CommonModule } from '@angular/common';
+import { reportDTO } from '../../models/report-dtos';
 
 @Component({
   selector: 'app-table',
@@ -10,38 +11,53 @@ import { CommonModule } from '@angular/common';
   styleUrl: './table.scss'
 })
 export class Table implements OnInit, OnChanges {
-  @Input() selectedColumns: string[] = [];
+  @Input() reportData: reportDTO | null = null;
   dataSource: any[] = [];
   displayedColumns: string[] = [];
 
   constructor(private reportService: ReportService) { }
 
   ngOnInit() {
-    this.getTableData();
+    this.updateDisplayedColumns();
+    this.buildTableData();
   }
 
   ngOnChanges(simpleChanges: any): void {
-    if (simpleChanges['selectedColumns']) {
+    if (simpleChanges['reportData']) {
       this.updateDisplayedColumns();
-      this.getTableData();
-
+      this.buildTableData();
     }
   }
 
   private updateDisplayedColumns(): void {
-    if (this.selectedColumns && this.selectedColumns.length > 0) {
-      this.displayedColumns = [...this.selectedColumns];
+    if (!this.reportData) {
+      this.displayedColumns = [];
+      return;
+    }
+
+    this.displayedColumns = ['product', 'category', 'region'];
+
+    if (this.reportData.includeId) {
+      this.displayedColumns.unshift('id');
+    }
+
+    if (this.reportData.dateRange) {
+      this.displayedColumns.push('date');
+    }
+
+    if (this.reportData.includeSalesData) {
+      this.displayedColumns.push('sales');
     }
   }
 
-  getTableData(): void {
-    this.reportService.getReportTableData(this.displayedColumns).subscribe({
-      next: (data) => {
-        this.dataSource = data;
-      },
-      error: (error) => {
-        console.error('Error updating table data:', error);
-      }
+  buildTableData(): void {
+    if (!this.reportData) {
+      this.dataSource = [];
+      return;
+    }
+
+    this.reportService.buildTableData(this.reportData).subscribe((data) => {
+      this.dataSource = data;
     });
   }
 }
