@@ -16,7 +16,7 @@ export class SelectAllDirective implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     const parentSelect = this._matSelect;
-    const parentFormControl = parentSelect.ngControl.control;
+    const parentFormControl = parentSelect.ngControl?.control;
 
     this._subscriptions.push(
       this._matOption.onSelectionChange.subscribe((ev) => {

@@ -148,7 +148,7 @@ export class ReportService {
   generateReportId(): number {
     const savedReports = localStorage.getItem('savedReports');
     const reportsArray = savedReports ? JSON.parse(savedReports) : [];
-    const maxId = reportsArray[reportsArray.length - 1]?.id || 0;
+    const maxId = Math.max(0, ...reportsArray.map((r: any) => r.id || 0));
     return maxId + 1;
   }
 }
