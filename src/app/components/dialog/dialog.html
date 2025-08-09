@@ -1,7 +1,9 @@
 <div class="dialog-container">
   <div class="dialog-title">
     <h2>{{ dialogTitle }}</h2>
-    <mat-icon class="close-icon" (click)="closeDialog()">close</mat-icon>
+    <mat-icon class="close-icon" (click)="closeDialog()" title="Close dialog"
+      >close</mat-icon
+    >
   </div>
   <ng-content select="[dialog-body]"></ng-content>
   <ng-content select="[dialog-buttons]"></ng-content>

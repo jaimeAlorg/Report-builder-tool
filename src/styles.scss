@@ -13,6 +13,7 @@ html {
     )
   );
   @include my_theme.light-theme-overrides();
+  // @include my_theme.light-high-contrast-overrides();
 }
 
 body {

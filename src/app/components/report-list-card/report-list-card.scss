@@ -73,11 +73,12 @@
       border-radius: tokens.border-radius(md);
       cursor: pointer;
 
-      &:hover {
-        background-color: var(--mat-sys-surface-container);
-        transform: translateY(-1px);
+      @media (min-width: tokens.breakpoint(mobile)) {
+        &:hover {
+          background-color: var(--mat-sys-surface-container);
+          transform: translateY(-1px);
+        }
       }
-
       .card-bullet-container {
         display: flex;
         align-items: center;
