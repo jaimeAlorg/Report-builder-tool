@@ -2,7 +2,7 @@
 
 **Jaime Arturo Álvarez Orgaz**
 
-To start the design process, I created the design guidelines—covering colors, typography, and elevation—using the Material Theme Builder. This tool is extremely convenient when starting a new project, as it generates a complete set of color palettes, elevation scales, and typography rules from a few initial parameters. I then incorporated these guidelines into the Figma draft using a Material template to ensure consistency from the very beginning.
+To start the design process, I created the design guidelines—covering colors, typography, and elevation—using the Material theme builder. This tool is extremely convenient when starting a new project, as it generates a complete set of color palettes, elevation scales, and typography rules from a few initial parameters. I then incorporated these guidelines into the Figma draft using a Material template to ensure consistency from the very beginning.
 
 The next step was to create rough sketches to determine the placement of the navigation bar and main container contents. From these sketches, five key design principles emerged:
 
@@ -17,7 +17,7 @@ In mobile view, navigation is split into two bars:
 
 ## 2. One-click report creation
 
-Whether on desktop or mobile, the Create Report button is always accessible. Clicking it opens a popup regardless of the user’s current location in the app. This design choice allows users—especially those in a hurry—to create a report instantly without navigating away.
+Whether on desktop or mobile, the **create report button** is always accessible. Clicking it opens a popup regardless of the user’s current location in the app. This design choice allows users—especially those in a hurry—to create a report instantly without navigating away.
 
 ## 3. Report viewer container
 
