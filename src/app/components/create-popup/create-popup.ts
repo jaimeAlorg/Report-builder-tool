@@ -15,7 +15,7 @@ import { ReportDTO, ReportItemDTO } from '../../models/report-dtos';
 import { SelectAllDirective } from '../../directives/select-all-directive';
 @Component({
   selector: 'app-create-popup',
-  imports: [Dialog, MatFormFieldModule, MatSelectModule, MatInputModule, ReactiveFormsModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, SelectAllDirective,],
+  imports: [Dialog, MatFormFieldModule, MatSelectModule, MatInputModule, ReactiveFormsModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, SelectAllDirective],
   providers: [provideNativeDateAdapter(), { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   templateUrl: './create-popup.html',
   styleUrl: './create-popup.scss'
