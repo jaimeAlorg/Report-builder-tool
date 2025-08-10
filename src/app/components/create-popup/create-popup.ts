@@ -7,7 +7,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import filterData from '../../data/mock_filters.json';
 import { ReportService } from '../../services/report-service/report-service';
@@ -16,7 +16,7 @@ import { SelectAllDirective } from '../../directives/select-all-directive';
 @Component({
   selector: 'app-create-popup',
   imports: [Dialog, MatFormFieldModule, MatSelectModule, MatInputModule, ReactiveFormsModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, SelectAllDirective],
-  providers: [provideNativeDateAdapter()],
+  providers: [provideNativeDateAdapter(), { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   templateUrl: './create-popup.html',
   styleUrl: './create-popup.scss'
 })
@@ -81,16 +81,41 @@ export class CreatePopup implements OnInit {
       product: formData.product,
       category: formData.category,
       region: formData.regions,
-      dateRange: {
-        start: formData.dateRange.start ? new Date(formData.dateRange.start).toISOString().split('T')[0] : '',
-        end: formData.dateRange.end ? new Date(formData.dateRange.end).toISOString().split('T')[0] : ''
-      },
+      dateRange: this.buildDateRange(formData.dateRange),
       includeId: formData.includeId,
       includeSalesData: formData.includeSalesData
     };
 
     return reportDTO;
   }
+
+  private buildDateRange(dateRange: any): { start: string; end: string } {
+    const startDate = dateRange.start ? this.formatDateLocalTimezone(dateRange.start) : null;
+    const endDate = dateRange.end ? this.formatDateLocalTimezone(dateRange.end) : null;
+
+    if (startDate && !endDate) {
+      return { start: startDate, end: startDate };
+    }
+
+    if (!startDate && endDate) {
+      return { start: endDate, end: endDate };
+    }
+
+    if (startDate && endDate) {
+      return { start: startDate, end: endDate };
+    }
+
+    return { start: '', end: '' };
+  }
+
+  private formatDateLocalTimezone(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+
 
   private markAllControlsAsTouched(formGroup: FormGroup | FormArray): void {
     Object.values(formGroup.controls).forEach(control => {

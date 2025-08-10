@@ -20,10 +20,10 @@
     <div class="nav-bar-bottom">
       <a class="nav-bar-item" (click)="toggleTheme()">
         <mat-icon
-          [fontIcon]="isHighContrast ? 'contrast' : 'brightness_6'"
+          [fontIcon]="isHighContrast ? 'brightness_6' : 'contrast'"
         ></mat-icon>
         <span>{{
-          isHighContrast ? "High contrast" : "Standard contrast"
+          isHighContrast ? "Standard contrast" : "High contrast"
         }}</span>
       </a>
       <a class="nav-bar-item">
