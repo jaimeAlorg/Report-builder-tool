@@ -13,6 +13,7 @@ import { CreatePopup } from '../create-popup/create-popup';
 })
 export class NavBar implements OnInit, OnDestroy {
   readonly dialog = inject(MatDialog);
+  DEFAULT_WIDTH: string = '500px';
 
   private routerSubscription: Subscription = new Subscription();
   isMobileMenuOpen: boolean = false;
@@ -55,7 +56,7 @@ export class NavBar implements OnInit, OnDestroy {
 
   openCreatePopup() {
     const dialogRef = this.dialog.open(CreatePopup, {
-      width: '500px',
+      width: this.DEFAULT_WIDTH,
       data: {}
     });
   }
